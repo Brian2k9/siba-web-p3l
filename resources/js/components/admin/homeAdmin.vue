@@ -3,8 +3,8 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item">
-        <img src="../../../../public/AA_logo_2.png">
-        <router-link to= "/" class="navbar-item"> ATMA AUTO </router-link>
+        
+        <router-link to= "/" class="button is-dark"> ATMA AUTO </router-link>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -39,10 +39,10 @@
             <router-link to= "/supplier"  class="navbar-item">Supplier</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/supplier"  class="navbar-item">Pelanggan</router-link>
+            <router-link to= "/pelanggan"  class="navbar-item">Pelanggan</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/supplier"  class="navbar-item">Kendaraan</router-link>
+            <router-link to= "/kendaraan"  class="navbar-item">Kendaraan</router-link>
           </a>
           <a class="navbar-item">
             <router-link to= "/cabang"  class="navbar-item">Cabang</router-link>
@@ -56,27 +56,12 @@
         Pemesanan
       </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+      
+        <a class="navbar-item">
           Laporan
         </a>
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
+        
      </div>
     
     
@@ -92,6 +77,9 @@
     </div>
   </div>
 </nav>
+<a>
+<img src="../../../../public/AAlogo.png">
+</a>
         <div id="appPage">
             <main class="pageContent">
             <transition name="fade">
@@ -100,8 +88,7 @@
             </main>
         </div>
         <div class="footer">
-            <hr>
-            <p style="text-align: center">Halaman Admin</p>
+            <p style="text-align: center">Halaman Admin SIBA</p>
         </div>
 </div>
 
@@ -113,3 +100,13 @@
     export default{
     }
 </script>
+
+<style>
+  .footer{
+    background-color: silver;
+    height: 100vh;
+  }
+  img{
+    margin-left: 70px;
+  }
+</style>

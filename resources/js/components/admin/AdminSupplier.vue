@@ -25,11 +25,11 @@
                         <td>{{ supplier.no_telp_supplier }}</td>
                         <td>{{ supplier.alamat_supplier }}</td>
                         <td>
-                            <router-link :to="{name: 'editSupplier', params: {id: supplier.id}}" class="button is-warning">
+                            <router-link :to="{name: 'editSupplier', params: {id: supplier.id}}" class="fa fa-edit blue">
                                 Edit
                             </router-link>
                             <a href="#"
-                               class="button is-danger"
+                               class="fa fa-trash red"
                                v-on:click="deleteEntry(supplier.id, index)">
                                 Delete
                             </a>

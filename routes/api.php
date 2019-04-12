@@ -65,11 +65,14 @@ Route::post('sparepart/store','sparepartcontroller@store');
 Route::put('/sparepart/update/{id}','sparepartcontroller@update');
 Route::delete('/sparepart/{id}','sparepartcontroller@destroy');
 
-// Route::get('pelanggan','pelanggancontroller@index');
-// Route::get('/pelanggan/{no_telp_pelanggan}','pelanggancontroller@show');
-// Route::post('pelanggan','pelanggancontroller@create');
-// Route::put('/pelanggan/{id_pelanggan}','pelanggancontroller@update');
-// Route::delete('/pelanggan/{id_pelanggan}','pelanggancontroller@destroy');
+
+Route::get('pelanggan','pelanggancontroller@index');
+Route::get('/pelanggan/{id}','pelanggancontroller@show');
+Route::get('/pelanggan/showByNo/{no_telp_pelanggan}','pelanggancontroller@showByNo');
+Route::get('/pelanggan/search', 'pelanggancontroller@search');
+Route::post('pelanggan/store','pelanggancontroller@store');
+Route::put('/pelanggan/update/{id}','pelanggancontroller@update');
+Route::delete('/pelanggan/{id}','pelanggancontroller@destroy');
 
 // Route::get('kendaraan','kendaraancontroller@index');
 // Route::get('/kendaraan/{merk_kendaraan}','kendaraancontroller@show');

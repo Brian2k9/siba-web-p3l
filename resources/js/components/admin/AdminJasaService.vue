@@ -25,11 +25,11 @@
                         <td>{{ cari.nama_jasa }}</td>
                         <td>{{ cari.harga_jasa }}</td>
                         <td>
-                            <router-link :to="{name: 'editJasaService', params: {id: cari.id}}" class="button is-warning">
+                            <router-link :to="{name: 'editJasaService', params: {id: cari.id}}" class="fa fa-edit blue">
                                 Edit
                             </router-link>
                             <a href="#"
-                               class="button is-danger"
+                               class="fa fa-trash red"
                                v-on:click="deleteEntry(cari.id, index)">
                                 Delete
                             </a>
@@ -43,11 +43,11 @@
                         <td>{{ jasa_service.nama_jasa }}</td>
                         <td>{{ jasa_service.harga_jasa }}</td>
                         <td>
-                            <router-link :to="{name: 'editJasaService', params: {id: jasa_service.id}}" class="button is-warning">
+                            <router-link :to="{name: 'editJasaService', params: {id: jasa_service.id}}" class="fa fa-edit blue">
                                 Edit
                             </router-link>
                             <a href="#"
-                               class="button is-danger"
+                               class="fa fa-trash red"
                                v-on:click="deleteEntry(jasa_service.id, index)">
                                 Delete
                             </a>
@@ -94,8 +94,9 @@
 
             cariItu(){
                 
-                 axios.get('/api/jasa_service/showByName?q=' +this.search)
-                 .then(function (resp) {
+                 axios.get('/api/jasa_service/search?q=' +this.search)
+                 .then(res => res.json())
+                 .then(res => {
                     this.caris = resp.data;
                     this.showSearch = true;
                     this.search = '';

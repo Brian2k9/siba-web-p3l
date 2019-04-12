@@ -72,12 +72,13 @@ class jasaservicecontroller extends Controller
     {
         //return jasa_service::where('nama_jasa', $nama_jasa)->first();
         $search = $request->get('q');
-        $result = jasa_service::where('nama_jasa', 'like', '%'.$search.'%')->get();
+        return jasa_service::where('nama_jasa', 'like', '%'.$search.'%')->get();
 
-        if (is_null($result)) {
-            return response()->json('Not Found', 404);
-        } else
-            return response()->json($result, 200);
+
+        // if (is_null($result)) {
+        //     return response()->json('Not Found', 404);
+        // } else
+        //     return response()->json($result, 200);
     }
 
     /**

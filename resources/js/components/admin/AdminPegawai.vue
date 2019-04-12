@@ -31,11 +31,11 @@
                         <td>{{ pegawai.password_pegawai }}</td>
                         <td>{{ pegawai.id_cabang }}</td>
                         <td>
-                            <router-link :to="{name: 'editPegawai', params: {id: pegawai.id}}" class="button is-warning">
+                            <router-link :to="{name: 'editPegawai', params: {id: pegawai.id}}" class="fa fa-edit blue">
                                 Edit
                             </router-link>
                             <a href="#"
-                               class="button is-danger"
+                               class="fa fa-trash red"
                                v-on:click="deleteEntry(pegawai.id, index)">
                                 Delete
                             </a>

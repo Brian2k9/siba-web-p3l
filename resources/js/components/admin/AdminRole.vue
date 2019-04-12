@@ -19,11 +19,11 @@
                     <tr v-for="(role,index) in roles" :key="role.id">
                         <td>{{ role.nama_role }}</td>
                         <td>
-                            <router-link :to="{name: 'editRole', params: {id: role.id}}" class="button is-warning">
+                            <router-link :to="{name: 'editRole', params: {id: role.id}}" class="fa fa-edit blue">
                                 Edit
                             </router-link>
                             <a href="#"
-                               class="button is-danger"
+                               class="fa fa-trash red"
                                v-on:click="deleteEntry(role.id, index)">
                                 Delete
                             </a>

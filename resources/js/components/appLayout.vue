@@ -1,5 +1,7 @@
 <template>
+<div class="bg">
 <router-view></router-view>
+</div>
 </template>
 
 <script>
@@ -10,3 +12,9 @@
     }
 </script>
 
+<style>
+    .bg{
+        background-color:silver;
+        height: 100vh;
+    }
+</style>

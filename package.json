@@ -26,7 +26,10 @@
         "@fortawesome/fontawesome-free": "^5.8.1",
         "buefy": "^0.7.3",
         "bulma": "^0.7.4",
+        "laravel-vue-pagination": "^2.3.0",
         "vue-axios": "^2.1.4",
-        "vue-router": "^3.0.2"
+        "vue-router": "^3.0.2",
+        "vue-simple-spinner": "^1.2.8",
+        "vue-swal": "^1.0.0"
     }
 }

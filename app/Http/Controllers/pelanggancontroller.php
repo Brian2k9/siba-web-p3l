@@ -14,7 +14,7 @@ class pelanggancontroller extends Controller
      */
     public function index()
     {
-        $pelanggans = Pelanggan::all();
+        $pelanggans = Pelanggan::paginate(4);
 
         return response()->json($pelanggans, 200);
     }
@@ -51,12 +51,28 @@ class pelanggancontroller extends Controller
         }
     }
 
+    public function search(Request $request){
+        $pelanggan = Pelanggan::where('nama_pelanggan','LIKE',"%$request->q%")->get();
+        
+        return $pelanggan;
+      }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        
+        $result = Pelanggan::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByNo($no_telp_pelanggan)
     {
         //return pelanggan::where('no_telp_pelanggan', $no_telp_pelanggan)->first();
@@ -68,6 +84,7 @@ class pelanggancontroller extends Controller
         } else
             return response()->json($result, 200);
     }
+    
 
     /**
      * Show the form for editing the specified resource.

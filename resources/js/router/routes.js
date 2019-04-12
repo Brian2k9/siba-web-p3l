@@ -31,6 +31,10 @@ import AdminCabang from '../components/admin/AdminCabang.vue'
 import CreateCabang from '../components/admin/CreateCabang.vue'
 import EditCabang from '../components/admin/EditCabang.vue'
 
+import AdminPelanggan from '../components/admin/AdminPelanggan.vue'
+import CreatePelanggan from '../components/admin/CreatePelanggan.vue'
+import EditPelanggan from '../components/admin/EditPelanggan.vue'
+
 
 
 const routes = [
@@ -121,6 +125,21 @@ const routes = [
                 path:'/edit_cabang',
                 component: EditCabang
             },
+
+            {
+                path:'/pelanggan',
+                component: AdminPelanggan
+            },
+            {
+                path:'/tambah_pelanggan',
+                component: CreatePelanggan
+            },
+            {
+                name: 'editPelanggan',
+                path:'/edit_pelanggan',
+                component: EditPelanggan
+            },
+           
             
         ]
     }

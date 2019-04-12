@@ -35,11 +35,11 @@
                         <td>{{ sparepart.harga_jual_sparepart }}</td>
                         <td>{{ sparepart.jumlah_minimal }}</td>
                         <td>
-                            <router-link :to="{name: 'editSparepart', params: {id: sparepart.id}}" class="button is-warning">
+                            <router-link :to="{name: 'editSparepart', params: {id: sparepart.id}}" class="fa fa-edit blue">
                                 Edit
                             </router-link>
                             <a href="#"
-                               class="button is-danger"
+                               class="fa fa-trash red"
                                v-on:click="deleteEntry(sparepart.id, index)">
                                 Delete
                             </a>

@@ -25,11 +25,11 @@
                         <td>{{ cabang.no_telp_cabang }}</td>
                         
                         <td>
-                            <router-link :to="{name: 'editCabang', params: {id: cabang.id}}" class="button is-warning">
+                            <router-link :to="{name: 'editCabang', params: {id: cabang.id}}" class="fa fa-edit blue">
                                 Edit
                             </router-link>
                             <a href="#"
-                               class="button is-danger"
+                               class="fa fa-trash red"
                                v-on:click="deleteEntry(cabang.id, index)">
                                 Delete
                             </a>

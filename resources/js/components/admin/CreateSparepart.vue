@@ -2,7 +2,7 @@
     <div>
         
         <div class="form-group">
-            <router-link to="/sparepart" class="button is-warning">Back</router-link>
+            <router-link to="/sparepart" class="fas fa-angle-left">Back</router-link>
         </div>
         
         <div class="panel panel-default">
@@ -13,7 +13,7 @@
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Kode Sparepart : </label>
                             <br>
-                            <input type="text" v-model="sparepart.kode_sparepart" class="form-control">
+                            <input class="input is-rounded" type="text" v-model="sparepart.kode_sparepart">
                         </div>
                     </div>
                     
@@ -21,7 +21,7 @@
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Nama Sparepart : </label>
                              <br>
-                            <input type="text" v-model="sparepart.nama_sparepart" class="form-control">
+                            <input class="input is-rounded" type="text" v-model="sparepart.nama_sparepart" >
                         </div>
                     </div>
                    
@@ -29,7 +29,7 @@
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Merk Sparepart : </label>
                             <br>
-                            <input type="text" v-model="sparepart.merk_sparepart" class="form-control">
+                            <input class="input is-rounded" type="text" v-model="sparepart.merk_sparepart">
                         </div>
                     </div>
                     
@@ -37,7 +37,7 @@
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Tipe Sparepart : </label>
                             <br>
-                            <input type="text" v-model="sparepart.tipe_sparepart" class="form-control">
+                            <input class="input is-rounded" type="text" v-model="sparepart.tipe_sparepart">
                         </div>
                     </div>
                     
@@ -84,6 +84,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <button class="button is-success">Tambah</button>
+                             <router-link to="/sparepart" class="button is-warning">Cancel</router-link>
                         </div>
                     </div>
                 </form>
