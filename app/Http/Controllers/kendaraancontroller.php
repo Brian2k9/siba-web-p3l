@@ -14,7 +14,7 @@ class kendaraancontroller extends Controller
      */
     public function index()
     {
-        $kendaraans = Kendaraan::all();
+        $kendaraans = Kendaraan::paginate(4);
 
         return response()->json($kendaraans, 200);
     }
@@ -56,6 +56,17 @@ class kendaraancontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function show($id)
+    {
+        
+        $result = Kendaraan::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByMerk($merk_kendaraan)
     {
         //return kendaraan::where('merk_kendaraan', $merk_kendaraan)->first();

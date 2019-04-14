@@ -14,7 +14,7 @@ class pegawaicontroller extends Controller
      */
     public function index()
     {
-        $pegawais = Pegawai::all();
+        $pegawais = Pegawai::paginate(4);
 
         return response()->json($pegawais, 200);
     }

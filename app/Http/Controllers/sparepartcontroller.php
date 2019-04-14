@@ -14,7 +14,7 @@ class sparepartcontroller extends Controller
      */
     public function index()
     {
-        $spareparts = Sparepart::all();
+        $spareparts = Sparepart::paginate(4);
 
         return response()->json($spareparts, 200);
     }
@@ -137,11 +137,23 @@ class sparepartcontroller extends Controller
         }
 
         else {
+
+            $exploded = explode(',', $request->gambar_sparepart);
+            $decoded = base64_decode($exploded[1]);
+            if(str_contains($exploded[0], 'jpeg'))
+              $extention = 'jpg';
+            else
+              $extention = 'png';
+      
+            $fileName = str_random() .'.'. $extention;
+            $path = public_path() . '/images/sparepart/' . $fileName;
+            file_put_contents($path, $decoded);
+
             $sparepart->kode_sparepart = $request->kode_sparepart;
             $sparepart->nama_sparepart = $request->nama_sparepart;
             $sparepart->merk_sparepart = $request->merk_sparepart;
             $sparepart->tipe_sparepart = $request->tipe_sparepart;
-            $sparepart->gambar_sparepart = $request->gambar_sparepart;
+            $sparepart->gambar_sparepart = $fileName;
             $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
             $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
             $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;

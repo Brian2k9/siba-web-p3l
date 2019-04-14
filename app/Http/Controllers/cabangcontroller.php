@@ -14,7 +14,7 @@ class cabangcontroller extends Controller
      */
     public function index()
     {
-        $cabangs = Cabang::all();
+        $cabangs = Cabang::paginate(4);
 
         return response()->json($cabangs, 200);
     }

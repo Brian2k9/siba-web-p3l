@@ -31,6 +31,7 @@ Route::delete('/jasa_service/{id}','jasaservicecontroller@destroy');
 
 
 Route::get('/role','rolecontroller@index');
+Route::get('/role/{id}','rolecontroller@show');
 Route::get('/role/showByName/{nama_role}','rolecontroller@showByName');
 Route::post('/role/store','rolecontroller@store');
 Route::put('/role/update/{id}','rolecontroller@update');
@@ -74,8 +75,9 @@ Route::post('pelanggan/store','pelanggancontroller@store');
 Route::put('/pelanggan/update/{id}','pelanggancontroller@update');
 Route::delete('/pelanggan/{id}','pelanggancontroller@destroy');
 
-// Route::get('kendaraan','kendaraancontroller@index');
-// Route::get('/kendaraan/{merk_kendaraan}','kendaraancontroller@show');
-// Route::post('kendaraan','kendaraancontroller@create');
-// Route::put('/kendaraan/{id_kendaraan}','kendaraancontroller@update');
-// Route::delete('/kendaraan/{id_kendaraan}','kendaraancontroller@destroy');
+Route::get('kendaraan','kendaraancontroller@index');
+Route::get('/kendaraan/{id}','kendaraancontroller@show');
+Route::get('/kendaraan/showByMerk/{merk_kendaraan}','kendaraancontroller@showByMerk');
+Route::post('kendaraan/store','kendaraancontroller@store');
+Route::put('/kendaraan/update/{id}','kendaraancontroller@update');
+Route::delete('/kendaraan/{id}','kendaraancontroller@destroy');
