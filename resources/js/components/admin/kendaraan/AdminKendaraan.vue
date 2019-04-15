@@ -13,8 +13,8 @@
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
-                      Pencarian 
-                      <input class = "input is-rounded" type="text" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <i class="fas fa-search"></i> 
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan merk" v-bind:style="{width: '20%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
@@ -25,7 +25,7 @@
                         
                     </thead>
                     <tbody>
-                      <tr v-for="(kendaraan,index) in kendaraans" :key ="kendaraan.id">
+                      <tr v-for="(kendaraan,index) in filteredList" :key ="kendaraan.id">
                         <td>{{ kendaraan.merk_kendaraan}}</td>
                         <td>{{ kendaraan.tipe_kendaraan}}</td>
                         <td>
@@ -74,16 +74,12 @@
      var app = this;
     app.getResults();
     },
-    watch: {
-       pencarian: function (q) {
-          if (q != '') {
-            this.getHasilPencarian()  
-          }
-          else {
-            this.getResults()
-          }
-          
-        }
+    computed: {
+       filteredList: function(){
+         return this.kendaraans.filter((kendaraan) => {
+           return kendaraan.merk_kendaraan.toLowerCase().match(this.pencarian.toLowerCase());
+         });
+       }
     },
     methods: {
       getResults(page){

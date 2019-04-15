@@ -14,7 +14,7 @@ class jasaservicecontroller extends Controller
      */
     public function index()
     {
-        $jasas = jasa_service::paginate(4);
+        $jasas = jasa_service::paginate(10);
 
         return response()->json($jasas, 200);
     }
@@ -37,6 +37,12 @@ class jasaservicecontroller extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nama_jasa' => 'required|unique:jasa_services,nama_jasa|max:255',
+            
+        ]);
+
         $jasa = new jasa_service;
         $jasa->nama_jasa = $request->nama_jasa;
         $jasa->harga_jasa = $request->harga_jasa;
@@ -101,6 +107,11 @@ class jasaservicecontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'nama_jasa' => 'required|unique:jasa_services,nama_jasa,'.$id.'|max:255',
+            ]);
+
         $jasa = jasa_service::where('id', $id)->first();
 
         if (is_null($jasa)) {

@@ -14,7 +14,7 @@ class kendaraancontroller extends Controller
      */
     public function index()
     {
-        $kendaraans = Kendaraan::paginate(4);
+        $kendaraans = Kendaraan::paginate(10);
 
         return response()->json($kendaraans, 200);
     }

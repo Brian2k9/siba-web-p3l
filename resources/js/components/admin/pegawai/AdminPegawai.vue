@@ -13,8 +13,8 @@
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
-                      Pencarian 
-                      <input class = "input is-rounded" type="text" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <i class="fas fa-search"></i> 
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama" v-bind:style="{width: '20%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
@@ -30,7 +30,7 @@
                         
                     </thead>
                     <tbody>
-                      <tr v-for="(pegawai,index) in pegawais" :key ="pegawai.id">
+                      <tr v-for="(pegawai,index) in filteredList" :key ="pegawai.id">
                         <td>{{ pegawai.id_role }}</td>
                         <td>{{ pegawai.nama_pegawai }}</td>
                         <td>{{ pegawai.alamat_pegawai }}</td>
@@ -84,16 +84,12 @@
      var app = this;
     app.getResults();
     },
-    watch: {
-       pencarian: function (q) {
-          if (q != '') {
-            this.getHasilPencarian()  
-          }
-          else {
-            this.getResults()
-          }
-          
-        }
+    computed: {
+       filteredList: function(){
+         return this.pegawais.filter((pegawai) => {
+           return pegawai.nama_pegawai.toLowerCase().match(this.pencarian.toLowerCase());
+         });
+       }
     },
     methods: {
       getResults(page){

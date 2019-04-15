@@ -14,7 +14,7 @@ class sparepartcontroller extends Controller
      */
     public function index()
     {
-        $spareparts = Sparepart::paginate(4);
+        $spareparts = Sparepart::paginate(10);
 
         return response()->json($spareparts, 200);
     }
@@ -37,6 +37,12 @@ class sparepartcontroller extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'kode_sparepart' => 'required|unique:spareparts,kode_sparepart|max:255',
+            
+        ]);
+
         $exploded = explode(',', $request->gambar_sparepart);
         $decoded = base64_decode($exploded[1]);
         if(str_contains($exploded[0], 'jpeg'))
@@ -98,6 +104,7 @@ class sparepartcontroller extends Controller
         } else
             return response()->json($result, 200);
     }
+    
     public function showByName($nama_sparepart)
     {
         //return sparepart::where('nama_sparepart', $nama_sparepart)->first();
@@ -130,6 +137,11 @@ class sparepartcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'kode_sparepart' => 'required|unique:spareparts,kode_sparepart,'.$id.'|max:255',
+            ]);
+
         $sparepart = Sparepart::where('id', $id)->first();
 
         if (is_null($sparepart)) {

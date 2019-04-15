@@ -14,7 +14,7 @@ class pelanggancontroller extends Controller
      */
     public function index()
     {
-        $pelanggans = Pelanggan::paginate(4);
+        $pelanggans = Pelanggan::paginate(10);
 
         return response()->json($pelanggans, 200);
     }
@@ -37,6 +37,11 @@ class pelanggancontroller extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'no_telp_pelanggan' => 'required|unique:pelanggans,no_telp_pelanggan|max:255',
+            
+        ]);
+
         $pelanggan = new pelanggan;
         $pelanggan->nama_pelanggan = $request->nama_pelanggan;
         $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
@@ -106,6 +111,10 @@ class pelanggancontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'no_telp_pelanggan' => 'required|unique:pelanggans,no_telp_pelanggan,'.$id.'|max:255',
+            ]);
+
         $pelanggan = Pelanggan::where('id', $id)->first();
 
         if (is_null($pelanggan)) {

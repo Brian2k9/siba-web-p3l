@@ -59,7 +59,7 @@ Route::post('/supplier/store','suppliercontroller@store');
 Route::put('/supplier/update/{id}','suppliercontroller@update');
 Route::delete('/supplier/{id}','suppliercontroller@destroy');
 
-Route::get('sparepart','sparepartcontroller@index');
+Route::get('/sparepart','sparepartcontroller@index');
 Route::get('/sparepart/{id}','sparepartcontroller@show');
 Route::get('/sparepart/showByName/{nama_sparepart}','sparepartcontroller@showByName');
 Route::post('sparepart/store','sparepartcontroller@store');
@@ -67,7 +67,7 @@ Route::put('/sparepart/update/{id}','sparepartcontroller@update');
 Route::delete('/sparepart/{id}','sparepartcontroller@destroy');
 
 
-Route::get('pelanggan','pelanggancontroller@index');
+Route::get('/pelanggan','pelanggancontroller@index');
 Route::get('/pelanggan/{id}','pelanggancontroller@show');
 Route::get('/pelanggan/showByNo/{no_telp_pelanggan}','pelanggancontroller@showByNo');
 Route::get('/pelanggan/search', 'pelanggancontroller@search');
@@ -75,7 +75,7 @@ Route::post('pelanggan/store','pelanggancontroller@store');
 Route::put('/pelanggan/update/{id}','pelanggancontroller@update');
 Route::delete('/pelanggan/{id}','pelanggancontroller@destroy');
 
-Route::get('kendaraan','kendaraancontroller@index');
+Route::get('/kendaraan','kendaraancontroller@index');
 Route::get('/kendaraan/{id}','kendaraancontroller@show');
 Route::get('/kendaraan/showByMerk/{merk_kendaraan}','kendaraancontroller@showByMerk');
 Route::post('kendaraan/store','kendaraancontroller@store');

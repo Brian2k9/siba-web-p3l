@@ -48,7 +48,7 @@
                          <div v-else>
                             <img :src="image" v-bind:style="{width: '100px', height: '100px' }"/> 
                          </div>
-                         <input name="image" type="file" @change="onFileSelected">
+                         <input name="image" type="file" @change="onFileSelected" class="form-control"/>
                
                         <span v-if="errors.gambar_sparepart" class="help is-danger"> {{ errors.gambar_sparepart[0]}}</span>
                         </div>
@@ -148,7 +148,7 @@
             return;
             this.createImage(files[0]);
       },
-      createImage(file) {
+      createImage(files) {
         var image = new Image();
         var reader = new FileReader();
         var vm = this;
@@ -156,7 +156,7 @@
         vm.image  = e.target.result;
         this.sparepart.gambar_sparepart = e.target.result;
         };
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(files);
       },
       
     }

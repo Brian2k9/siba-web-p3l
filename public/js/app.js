@@ -1840,13 +1840,13 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getResults();
   },
-  watch: {
-    pencarian: function pencarian(q) {
-      if (q != '') {
-        this.getHasilPencarian();
-      } else {
-        this.getResults();
-      }
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.cabangs.filter(function (cabang) {
+        return cabang.nama_cabang.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
     }
   },
   methods: {
@@ -1883,19 +1883,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteEntry: function deleteEntry(id, index, namaCabang) {
-      var _this = this;
+      var _this2 = this;
 
       axios.delete('/api/cabang/' + id).then(function (resp) {
-        _this.getResults();
+        _this2.getResults();
 
-        _this.alert("Berhasil Menghapus", "Berhasil Menghapus Cabang " + namaCabang);
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Cabang " + namaCabang);
       }).catch(function (resp) {
         alert("Gagal Menghapus Cabang");
         console.log(resp);
       });
     },
     konfirmasiHapus: function konfirmasiHapus(id, index, namaCabang) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
         title: "Yakin Ingin Menghapus Cabang " + namaCabang + "?",
@@ -1905,7 +1905,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this2.deleteEntry(id, index, namaCabang);
+          _this3.deleteEntry(id, index, namaCabang);
         }
       });
     },
@@ -2226,13 +2226,13 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getResults();
   },
-  watch: {
-    pencarian: function pencarian(q) {
-      if (q != '') {
-        this.getHasilPencarian();
-      } else {
-        this.getResults();
-      }
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.jasa_services.filter(function (jasa_service) {
+        return jasa_service.nama_jasa.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
     }
   },
   methods: {
@@ -2269,19 +2269,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteEntry: function deleteEntry(id, index, namaJasa) {
-      var _this = this;
+      var _this2 = this;
 
       axios.delete('/api/jasa_service/' + id).then(function (resp) {
-        _this.getResults();
+        _this2.getResults();
 
-        _this.alert("Berhasil Menghapus", "Berhasil Menghapus Jasa Service " + namaJasa);
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Jasa Service " + namaJasa);
       }).catch(function (resp) {
         alert("Gagal Menghapus Jasa Service");
         console.log(resp);
       });
     },
     konfirmasiHapus: function konfirmasiHapus(id, index, namaJasa) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
         title: "Yakin Ingin Menghapus Jasa Service " + namaJasa + "?",
@@ -2291,7 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this2.deleteEntry(id, index, namaJasa);
+          _this3.deleteEntry(id, index, namaJasa);
         }
       });
     },
@@ -2592,13 +2592,13 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getResults();
   },
-  watch: {
-    pencarian: function pencarian(q) {
-      if (q != '') {
-        this.getHasilPencarian();
-      } else {
-        this.getResults();
-      }
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.kendaraans.filter(function (kendaraan) {
+        return kendaraan.merk_kendaraan.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
     }
   },
   methods: {
@@ -2635,19 +2635,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteEntry: function deleteEntry(id, index, merkKendaraan) {
-      var _this = this;
+      var _this2 = this;
 
       axios.delete('/api/kendaraan/' + id).then(function (resp) {
-        _this.getResults();
+        _this2.getResults();
 
-        _this.alert("Berhasil Menghapus", "Berhasil Menghapus Kendaraan " + merkKendaraan);
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Kendaraan " + merkKendaraan);
       }).catch(function (resp) {
         alert("Gagal Menghapus Kendaraan");
         console.log(resp);
       });
     },
     konfirmasiHapus: function konfirmasiHapus(id, index, merkKendaraan) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
         title: "Yakin Ingin Menghapus Kendaraan " + merkKendaraan + "?",
@@ -2657,7 +2657,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this2.deleteEntry(id, index, merkKendaraan);
+          _this3.deleteEntry(id, index, merkKendaraan);
         }
       });
     },
@@ -2968,13 +2968,13 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getResults();
   },
-  watch: {
-    pencarian: function pencarian(q) {
-      if (q != '') {
-        this.getHasilPencarian();
-      } else {
-        this.getResults();
-      }
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.pegawais.filter(function (pegawai) {
+        return pegawai.nama_pegawai.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
     }
   },
   methods: {
@@ -3011,19 +3011,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteEntry: function deleteEntry(id, index, namaPegawai) {
-      var _this = this;
+      var _this2 = this;
 
       axios.delete('/api/pegawai/' + id).then(function (resp) {
-        _this.getResults();
+        _this2.getResults();
 
-        _this.alert("Berhasil Menghapus", "Berhasil Menghapus Pegawai " + namaPegawai);
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Pegawai " + namaPegawai);
       }).catch(function (resp) {
         alert("Gagal Menghapus Pegawai");
         console.log(resp);
       });
     },
     konfirmasiHapus: function konfirmasiHapus(id, index, namaPegawai) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
         title: "Yakin Ingin Menghapus Pegawai " + namaPegawai + "?",
@@ -3033,7 +3033,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this2.deleteEntry(id, index, namaPegawai);
+          _this3.deleteEntry(id, index, namaPegawai);
         }
       });
     },
@@ -3420,13 +3420,13 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getResults();
   },
-  watch: {
-    pencarian: function pencarian(q) {
-      if (q != '') {
-        this.getHasilPencarian();
-      } else {
-        this.getResults();
-      }
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.pelanggans.filter(function (pelanggan) {
+        return pelanggan.no_telp_pelanggan.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
     }
   },
   methods: {
@@ -3463,19 +3463,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteEntry: function deleteEntry(id, index, namaPelanggan) {
-      var _this = this;
+      var _this2 = this;
 
       axios.delete('/api/pelanggan/' + id).then(function (resp) {
-        _this.getResults();
+        _this2.getResults();
 
-        _this.alert("Berhasil Menghapus", "Berhasil Menghapus Pelanggan " + namaPelanggan);
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Pelanggan " + namaPelanggan);
       }).catch(function (resp) {
         alert("Gagal Menghapus Pelanggan");
         console.log(resp);
       });
     },
     konfirmasiHapus: function konfirmasiHapus(id, index, namaPelanggan) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
         title: "Yakin Ingin Menghapus Pelanggan " + namaPelanggan + "?",
@@ -3485,7 +3485,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this2.deleteEntry(id, index, namaPelanggan);
+          _this3.deleteEntry(id, index, namaPelanggan);
         }
       });
     },
@@ -3804,13 +3804,13 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getResults();
   },
-  watch: {
-    pencarian: function pencarian(q) {
-      if (q != '') {
-        this.getHasilPencarian();
-      } else {
-        this.getResults();
-      }
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.roles.filter(function (role) {
+        return role.nama_role.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
     }
   },
   methods: {
@@ -3847,19 +3847,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteEntry: function deleteEntry(id, index, namaRole) {
-      var _this = this;
+      var _this2 = this;
 
       axios.delete('/api/role/' + id).then(function (resp) {
-        _this.getResults();
+        _this2.getResults();
 
-        _this.alert("Berhasil Menghapus", "Berhasil Menghapus Role " + namaRole);
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Role " + namaRole);
       }).catch(function (resp) {
         alert("Gagal Menghapus Role");
         console.log(resp);
       });
     },
     konfirmasiHapus: function konfirmasiHapus(id, index, namaRole) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
         title: "Yakin Ingin Menghapus Role " + namaRole + "?",
@@ -3869,7 +3869,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this2.deleteEntry(id, index, namaRole);
+          _this3.deleteEntry(id, index, namaRole);
         }
       });
     },
@@ -4285,13 +4285,13 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getResults();
   },
-  watch: {
-    pencarian: function pencarian(q) {
-      if (q != '') {
-        this.getHasilPencarian();
-      } else {
-        this.getResults();
-      }
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.spareparts.filter(function (sparepart) {
+        return sparepart.nama_sparepart.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
     }
   },
   methods: {
@@ -4328,19 +4328,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteEntry: function deleteEntry(id, index, namaSparepart) {
-      var _this = this;
+      var _this2 = this;
 
       axios.delete('/api/sparepart/' + id).then(function (resp) {
-        _this.getResults();
+        _this2.getResults();
 
-        _this.alert("Berhasil Menghapus", "Berhasil Menghapus Sparepart " + namaSparepart);
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Sparepart " + namaSparepart);
       }).catch(function (resp) {
         alert("Gagal Menghapus Sparepart");
         console.log(resp);
       });
     },
     konfirmasiHapus: function konfirmasiHapus(id, index, namaSparepart) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
         title: "Yakin Ingin Menghapus Sparepart " + namaSparepart + "?",
@@ -4350,7 +4350,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this2.deleteEntry(id, index, namaSparepart);
+          _this3.deleteEntry(id, index, namaSparepart);
         }
       });
     },
@@ -4524,7 +4524,7 @@ __webpack_require__.r(__webpack_exports__);
       if (!files.length) return;
       this.createImage(files[0]);
     },
-    createImage: function createImage(file) {
+    createImage: function createImage(files) {
       var _this2 = this;
 
       var image = new Image();
@@ -4536,7 +4536,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.sparepart.gambar_sparepart = e.target.result;
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(files);
     }
   }
 });
@@ -4709,7 +4709,7 @@ __webpack_require__.r(__webpack_exports__);
       if (!files.length) return;
       this.createImage(files[0]);
     },
-    createImage: function createImage(file) {
+    createImage: function createImage(files) {
       var _this3 = this;
 
       var image = new Image();
@@ -4721,7 +4721,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.sparepart.gambar_sparepart = e.target.result;
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(files);
     }
   }
 });
@@ -4816,13 +4816,13 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getResults();
   },
-  watch: {
-    pencarian: function pencarian(q) {
-      if (q != '') {
-        this.getHasilPencarian();
-      } else {
-        this.getResults();
-      }
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.suppliers.filter(function (supplier) {
+        return supplier.nama_supplier.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
     }
   },
   methods: {
@@ -4859,19 +4859,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteEntry: function deleteEntry(id, index, namaSupplier) {
-      var _this = this;
+      var _this2 = this;
 
       axios.delete('/api/supplier/' + id).then(function (resp) {
-        _this.getResults();
+        _this2.getResults();
 
-        _this.alert("Berhasil Menghapus", "Berhasil Menghapus Supplier " + namaSupplier);
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Supplier " + namaSupplier);
       }).catch(function (resp) {
         alert("Gagal Menghapus Supplier");
         console.log(resp);
       });
     },
     konfirmasiHapus: function konfirmasiHapus(id, index, namaSupplier) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
         title: "Yakin Ingin Menghapus Supplier " + namaSupplier + "?",
@@ -4881,7 +4881,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          _this2.deleteEntry(id, index, namaSupplier);
+          _this3.deleteEntry(id, index, namaSupplier);
         }
       });
     },
@@ -7721,9 +7721,8 @@ var render = function() {
             { staticClass: "card-body table-responsive p-0" },
             [
               _c("div", { attrs: { align: "right" } }, [
-                _vm._v(
-                  "\r\n                      Pencarian \r\n                      "
-                ),
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -7735,7 +7734,7 @@ var render = function() {
                   ],
                   staticClass: "input is-rounded",
                   style: { width: "20%" },
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "cari berdasarkan nama" },
                   domProps: { value: _vm.pencarian },
                   on: {
                     input: function($event) {
@@ -7761,7 +7760,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.cabangs, function(cabang, index) {
+                    _vm._l(_vm.filteredList, function(cabang, index) {
                       return _c("tr", { key: cabang.id }, [
                         _c("td", [_vm._v(_vm._s(cabang.nama_cabang))]),
                         _vm._v(" "),
@@ -8490,9 +8489,8 @@ var render = function() {
             { staticClass: "card-body table-responsive p-0" },
             [
               _c("div", { attrs: { align: "right" } }, [
-                _vm._v(
-                  "\r\n                      Pencarian \r\n                      "
-                ),
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -8504,7 +8502,7 @@ var render = function() {
                   ],
                   staticClass: "input is-rounded",
                   style: { width: "20%" },
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "cari berdasarkan nama" },
                   domProps: { value: _vm.pencarian },
                   on: {
                     input: function($event) {
@@ -8530,7 +8528,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.jasa_services, function(jasa_service, index) {
+                    _vm._l(_vm.filteredList, function(jasa_service, index) {
                       return _c("tr", { key: jasa_service.id }, [
                         _c("td", [_vm._v(_vm._s(jasa_service.nama_jasa))]),
                         _vm._v(" "),
@@ -9084,9 +9082,8 @@ var render = function() {
             { staticClass: "card-body table-responsive p-0" },
             [
               _c("div", { attrs: { align: "right" } }, [
-                _vm._v(
-                  "\r\n                      Pencarian \r\n                      "
-                ),
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -9098,7 +9095,7 @@ var render = function() {
                   ],
                   staticClass: "input is-rounded",
                   style: { width: "20%" },
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "cari berdasarkan merk" },
                   domProps: { value: _vm.pencarian },
                   on: {
                     input: function($event) {
@@ -9124,7 +9121,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.kendaraans, function(kendaraan, index) {
+                    _vm._l(_vm.filteredList, function(kendaraan, index) {
                       return _c("tr", { key: kendaraan.id }, [
                         _c("td", [_vm._v(_vm._s(kendaraan.merk_kendaraan))]),
                         _vm._v(" "),
@@ -9682,9 +9679,8 @@ var render = function() {
             { staticClass: "card-body table-responsive p-0" },
             [
               _c("div", { attrs: { align: "right" } }, [
-                _vm._v(
-                  "\r\n                      Pencarian \r\n                      "
-                ),
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -9696,7 +9692,7 @@ var render = function() {
                   ],
                   staticClass: "input is-rounded",
                   style: { width: "20%" },
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "cari berdasarkan nama" },
                   domProps: { value: _vm.pencarian },
                   on: {
                     input: function($event) {
@@ -9722,7 +9718,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.pegawais, function(pegawai, index) {
+                    _vm._l(_vm.filteredList, function(pegawai, index) {
                       return _c("tr", { key: pegawai.id }, [
                         _c("td", [_vm._v(_vm._s(pegawai.id_role))]),
                         _vm._v(" "),
@@ -10802,9 +10798,8 @@ var render = function() {
             { staticClass: "card-body table-responsive p-0" },
             [
               _c("div", { attrs: { align: "right" } }, [
-                _vm._v(
-                  "\r\n                      Pencarian \r\n                      "
-                ),
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -10815,8 +10810,11 @@ var render = function() {
                     }
                   ],
                   staticClass: "input is-rounded",
-                  style: { width: "20%" },
-                  attrs: { type: "text" },
+                  style: { width: "25%" },
+                  attrs: {
+                    type: "text",
+                    placeholder: "cari berdasarkan nomor telp"
+                  },
                   domProps: { value: _vm.pencarian },
                   on: {
                     input: function($event) {
@@ -10842,7 +10840,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.pelanggans, function(pelanggan, index) {
+                    _vm._l(_vm.filteredList, function(pelanggan, index) {
                       return _c("tr", { key: pelanggan.id }, [
                         _c("td", [_vm._v(_vm._s(pelanggan.nama_pelanggan))]),
                         _vm._v(" "),
@@ -11516,9 +11514,8 @@ var render = function() {
             { staticClass: "card-body table-responsive p-0" },
             [
               _c("div", { attrs: { align: "right" } }, [
-                _vm._v(
-                  "\r\n                      Pencarian \r\n                      "
-                ),
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -11530,7 +11527,7 @@ var render = function() {
                   ],
                   staticClass: "input is-rounded",
                   style: { width: "20%" },
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "cari berdasarkan nama" },
                   domProps: { value: _vm.pencarian },
                   on: {
                     input: function($event) {
@@ -11556,7 +11553,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.roles, function(role, index) {
+                    _vm._l(_vm.filteredList, function(role, index) {
                       return _c("tr", { key: role.id }, [
                         _c("td", [_vm._v(_vm._s(role.nama_role))]),
                         _vm._v(" "),
@@ -12275,9 +12272,8 @@ var render = function() {
             { staticClass: "card-body table-responsive p-0" },
             [
               _c("div", { attrs: { align: "right" } }, [
-                _vm._v(
-                  "\r\n                      Pencarian \r\n                      "
-                ),
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -12289,7 +12285,7 @@ var render = function() {
                   ],
                   staticClass: "input is-rounded",
                   style: { width: "20%" },
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "cari berdasarkan nama" },
                   domProps: { value: _vm.pencarian },
                   on: {
                     input: function($event) {
@@ -12315,7 +12311,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.spareparts, function(sparepart, index) {
+                    _vm._l(_vm.filteredList, function(sparepart, index) {
                       return _c("tr", { key: sparepart.id }, [
                         _c("td", [_vm._v(_vm._s(sparepart.kode_sparepart))]),
                         _vm._v(" "),
@@ -12728,6 +12724,7 @@ var render = function() {
                         ]),
                     _vm._v(" "),
                     _c("input", {
+                      staticClass: "form-control",
                       attrs: { name: "image", type: "file" },
                       on: { change: _vm.onFileSelected }
                     }),
@@ -13261,6 +13258,7 @@ var render = function() {
                         ]),
                     _vm._v(" "),
                     _c("input", {
+                      staticClass: "form-control",
                       attrs: { name: "image", type: "file" },
                       on: { change: _vm.onFileSelected }
                     }),
@@ -13582,9 +13580,8 @@ var render = function() {
             { staticClass: "card-body table-responsive p-0" },
             [
               _c("div", { attrs: { align: "right" } }, [
-                _vm._v(
-                  "\r\n                      Pencarian \r\n                      "
-                ),
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -13596,7 +13593,7 @@ var render = function() {
                   ],
                   staticClass: "input is-rounded",
                   style: { width: "20%" },
-                  attrs: { type: "text" },
+                  attrs: { type: "text", placeholder: "cari berdasarkan nama" },
                   domProps: { value: _vm.pencarian },
                   on: {
                     input: function($event) {
@@ -13622,7 +13619,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.suppliers, function(supplier, index) {
+                    _vm._l(_vm.filteredList, function(supplier, index) {
                       return _c("tr", { key: supplier.id }, [
                         _c("td", [_vm._v(_vm._s(supplier.nama_supplier))]),
                         _vm._v(" "),

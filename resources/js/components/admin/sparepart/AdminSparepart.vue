@@ -13,8 +13,8 @@
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
-                      Pencarian 
-                      <input class = "input is-rounded" type="text" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <i class="fas fa-search"></i> 
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama" v-bind:style="{width: '20%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
@@ -32,7 +32,7 @@
                         
                     </thead>
                     <tbody>
-                      <tr v-for="(sparepart,index) in spareparts" :key ="sparepart.id">
+                      <tr v-for="(sparepart,index) in filteredList" :key ="sparepart.id">
                         <td>{{ sparepart.kode_sparepart }}</td>
                         <td>{{ sparepart.nama_sparepart }}</td>
                         <td>{{ sparepart.merk_sparepart }}</td>
@@ -88,16 +88,12 @@
      var app = this;
     app.getResults();
     },
-    watch: {
-       pencarian: function (q) {
-          if (q != '') {
-            this.getHasilPencarian()  
-          }
-          else {
-            this.getResults()
-          }
-          
-        }
+    computed: {
+       filteredList: function(){
+         return this.spareparts.filter((sparepart) => {
+           return sparepart.nama_sparepart.toLowerCase().match(this.pencarian.toLowerCase());
+         });
+       }
     },
     methods: {
       getResults(page){
