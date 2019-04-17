@@ -38,7 +38,7 @@ class suppliercontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_telp_supplier' => 'required|unique:suppliers,no_telp_supplier|max:255',
+            'no_telp_supplier' => 'required|unique:suppliers,no_telp_supplier|max:13',
             
         ]);
         //post
@@ -105,7 +105,7 @@ class suppliercontroller extends Controller
     {
 
         $request->validate([
-            'no_telp_supplier' => 'required|unique:suppliers,no_telp_supplier,'.$id.'|max:255',
+            'no_telp_supplier' => 'required|unique:suppliers,no_telp_supplier,'.$id.'|max:13',
             ]);
 
         $supplier = Supplier::where('id', $id)->first();

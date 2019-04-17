@@ -13,7 +13,9 @@ class transpenjualancontroller extends Controller
      */
     public function index()
     {
-        //
+        $transpenjualans = trans_penjualan::paginate(10);
+
+        return response()->json($transpenjualans, 200);
     }
 
     /**
@@ -34,7 +36,29 @@ class transpenjualancontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'no_plat_kendaraan' => 'required|unique:trans_penjualans,no_plat_kendaraan|max:8',
+            
+        ]);
+
+        $transpenjualan = new trans_penjualan;
+        $transpenjualan->id_pelanggan = $request->id_pelanggan;
+        $transpenjualan->id_cabang = $request->id_cabang;
+        $transpenjualan->total_harga_trans = $request->total_harga_trans;
+        $transpenjualan->discount_penjualan = $request->discount_penjualan;
+        $transpenjualan->grand_total = $request->grand_total;
+        $transpenjualan->status_transaksi = $request->status_transaksi;
+        $transpenjualan->status_pembayaran = $request->status_pembayaran;
+        $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
+        $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
+
+        $success = $transpenjualan->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 201);
+        }
     }
 
     /**
@@ -45,7 +69,12 @@ class transpenjualancontroller extends Controller
      */
     public function show($id)
     {
-        //
+        $result = trans_penjualan::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -68,7 +97,35 @@ class transpenjualancontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'no_plat_kendaraan' => 'required|unique:trans_penjualans,no_plat_kendaraan,'.$id.'|max:8',
+            ]);
+
+        $transpenjualan = trans_penjualan::where('id', $id)->first();
+
+        if (is_null($transpenjualan)) {
+            return response()->json('Transaksi penjualan not found', 404);
+        }
+
+        else {
+            $transpenjualan->id_pelanggan = $request->id_pelanggan;
+            $transpenjualan->id_cabang = $request->id_cabang;
+            $transpenjualan->total_harga_trans = $request->total_harga_trans;
+            $transpenjualan->discount_penjualan = $request->discount_penjualan;
+            $transpenjualan->grand_total = $request->grand_total;
+            $transpenjualan->status_transaksi = $request->status_transaksi;
+            $transpenjualan->status_pembayaran = $request->status_pembayaran;
+            $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
+            $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
+
+            $success = $transpenjualan->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -79,6 +136,19 @@ class transpenjualancontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transpenjualan = trans_penjualan::find($id);
+
+        if(is_null($transpenjualan)) {
+            return response()->json('Transaksi Penjualan Not Found', 404);
+        }
+        
+        else {
+            $success = $transpenjualan->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }

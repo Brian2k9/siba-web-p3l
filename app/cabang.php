@@ -12,4 +12,11 @@ class cabang extends Model
     protected $fillable = ['nama_cabang',
                             'alamat_cabang',
                             'no_telp_cabang'];
+
+
+   public function pegawai(){
+    return $this->hasMany(Pegawai::class);
+}                         
 }
+
+

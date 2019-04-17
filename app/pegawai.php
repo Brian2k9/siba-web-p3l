@@ -16,4 +16,12 @@ class pegawai extends Model
                             'gaji_perminggu',
                             'password_pegawai',
                             'id_cabang'];
+
+    public function cabang(){
+        return $this->belongsTo(Cabang::class, 'id_cabang');
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class, 'id_role');
+    }
 }

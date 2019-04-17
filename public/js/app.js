@@ -9720,7 +9720,7 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.filteredList, function(pegawai, index) {
                       return _c("tr", { key: pegawai.id }, [
-                        _c("td", [_vm._v(_vm._s(pegawai.id_role))]),
+                        _c("td", [_vm._v(_vm._s(pegawai.role.nama_role))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(pegawai.nama_pegawai))]),
                         _vm._v(" "),
@@ -9732,7 +9732,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(pegawai.password_pegawai))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(pegawai.id_cabang))]),
+                        _c("td", [_vm._v(_vm._s(pegawai.cabang.nama_cabang))]),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -9829,7 +9829,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("th", [_vm._v("ID Role")]),
+      _c("th", [_vm._v("Role")]),
       _vm._v(" "),
       _c("th", [_vm._v("Nama Pegawai")]),
       _vm._v(" "),
@@ -9841,7 +9841,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Password Pegawai")]),
       _vm._v(" "),
-      _c("th", [_vm._v("ID Cabang")]),
+      _c("th", [_vm._v("Cabang")]),
       _vm._v(" "),
       _c("th", [_vm._v("Modify")])
     ])

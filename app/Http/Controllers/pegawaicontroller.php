@@ -14,7 +14,7 @@ class pegawaicontroller extends Controller
      */
     public function index()
     {
-        $pegawais = Pegawai::paginate(10);
+        $pegawais = Pegawai::with('cabang','role')->paginate(10);
 
         return response()->json($pegawais, 200);
     }
@@ -39,7 +39,8 @@ class pegawaicontroller extends Controller
     {
 
         $request->validate([
-            'no_telp_pegawai' => 'required|unique:pegawais,no_telp_pegawai|max:255',
+            'no_telp_pegawai' => 'required|unique:pegawais,no_telp_pegawai|min:12|max:13',
+            'password_pegawai' => 'required|unique:pegawais,password_pegawai|min:8|max:16',
             
         ]);
 
@@ -112,7 +113,8 @@ class pegawaicontroller extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'no_telp_pegawai' => 'required|unique:pegawais,no_telp_pegawai,'.$id.'|max:255',
+            'no_telp_pegawai' => 'required|unique:pegawais,no_telp_pegawai,'.$id.'|min:12|max:13',
+            'password_pegawai' => 'required|unique:pegawais,password_pegawai,'.$id.'|min:8|max:16',
             ]);
 
         $pegawai = Pegawai::where('id', $id)->first();

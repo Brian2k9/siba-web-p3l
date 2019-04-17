@@ -10,4 +10,8 @@ class role extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = ['nama_role'];
+
+    public function pegawai(){
+        return $this->hasMany(Pegawai::class);
+    }
 }

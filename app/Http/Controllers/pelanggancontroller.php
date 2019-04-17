@@ -38,7 +38,7 @@ class pelanggancontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_telp_pelanggan' => 'required|unique:pelanggans,no_telp_pelanggan|max:255',
+            'no_telp_pelanggan' => 'required|unique:pelanggans,no_telp_pelanggan|max:13',
             
         ]);
 
@@ -112,7 +112,7 @@ class pelanggancontroller extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'no_telp_pelanggan' => 'required|unique:pelanggans,no_telp_pelanggan,'.$id.'|max:255',
+            'no_telp_pelanggan' => 'required|unique:pelanggans,no_telp_pelanggan,'.$id.'|max:13',
             ]);
 
         $pelanggan = Pelanggan::where('id', $id)->first();

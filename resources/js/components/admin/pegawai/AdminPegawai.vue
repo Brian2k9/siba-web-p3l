@@ -19,25 +19,25 @@
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
                     <thead>
-                        <th>ID Role</th>
+                        <th>Role</th>
                         <th>Nama Pegawai</th>
                         <th>Alamat Pegawai</th>
                         <th>No Telp Pegawai</th>
                         <th>Gaji Per Minggu</th>
                         <th>Password Pegawai</th>
-                        <th>ID Cabang</th>
+                        <th>Cabang</th>
                         <th>Modify</th>
                         
                     </thead>
                     <tbody>
                       <tr v-for="(pegawai,index) in filteredList" :key ="pegawai.id">
-                        <td>{{ pegawai.id_role }}</td>
+                        <td>{{ pegawai.role.nama_role }}</td>
                         <td>{{ pegawai.nama_pegawai }}</td>
                         <td>{{ pegawai.alamat_pegawai }}</td>
                         <td>{{ pegawai.no_telp_pegawai }}</td>
                         <td>{{ pegawai.gaji_perminggu }}</td>
                         <td>{{ pegawai.password_pegawai }}</td>
-                        <td>{{ pegawai.id_cabang }}</td>
+                        <td>{{ pegawai.cabang.nama_cabang }}</td>
                         <td>
                         <router-link 
                           :to="{name:'editPegawai' ,params:{id: pegawai.id}}" 
