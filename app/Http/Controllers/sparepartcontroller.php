@@ -42,7 +42,7 @@ class sparepartcontroller extends Controller
             'kode_sparepart' => 'required|unique:spareparts,kode_sparepart|max:255',
             
         ]);
-
+            
         $exploded = explode(',', $request->gambar_sparepart);
         $decoded = base64_decode($exploded[1]);
         if(str_contains($exploded[0], 'jpeg'))
@@ -77,6 +77,26 @@ class sparepartcontroller extends Controller
             $sparepart->gambar_sparepart = $file;
         }
         */
+
+        // $sparepart = new sparepart;
+        // $sparepart->kode_sparepart = $request->kode_sparepart;
+        // $sparepart->nama_sparepart = $request->nama_sparepart;
+        // $sparepart->merk_sparepart = $request->merk_sparepart;  
+        // $sparepart->tipe_sparepart = $request->tipe_sparepart;
+        // $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
+        // $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
+        // $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
+        // $sparepart->jumlah_minimal = $request->jumlah_minimal;
+        
+        // if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
+        //     $dir = 'images/sparepart/';
+        //     $path = 'http://127.0.0.1:8000/images/sparepart/'; //sesuai path yang dipake
+        //     $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
+        //     $fileName = str_random() . '.' . $extension;
+        //     $file = $path . $fileName;
+        //     $request->file('gambar_sparepart')->move($dir, $fileName);
+        //     $sparepart->gambar_sparepart = $file;
+        // }
 
         $success = $sparepart->save();
 
@@ -149,27 +169,62 @@ class sparepartcontroller extends Controller
         }
 
         else {
+            
+                
 
-            $exploded = explode(',', $request->gambar_sparepart);
-            $decoded = base64_decode($exploded[1]);
-            if(str_contains($exploded[0], 'jpeg'))
-              $extention = 'jpg';
-            else
-              $extention = 'png';
-      
-            $fileName = str_random() .'.'. $extention;
-            $path = public_path() . '/images/sparepart/' . $fileName;
-            file_put_contents($path, $decoded);
+                if(is_null($sparepart->gambar_sparepart)){
+                    $sparepart->kode_sparepart = $request->kode_sparepart;
+                    $sparepart->nama_sparepart = $request->nama_sparepart;
+                    $sparepart->merk_sparepart = $request->merk_sparepart;
+                    $sparepart->tipe_sparepart = $request->tipe_sparepart;
+                    $sparepart->gambar_sparepart = $request->gambar_sparepart;
+                    $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
+                    $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
+                    $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
+                    $sparepart->jumlah_minimal = $request->jumlah_minimal;
+                }
+                else{
+                    $exploded = explode(',', $request->gambar_sparepart);
+                    $decoded = base64_decode(isset($exploded[1]) ? $exploded[1] : null);
+                    if(str_contains($exploded[0], 'jpeg'))
+                    $extention = 'jpg';
+                    else
+                    $extention = 'png';
+          
+                    $fileName = str_random() .'.'. $extention;
+                    $path = public_path() . '/images/sparepart/' . $fileName;
+                    file_put_contents($path, $decoded);
 
-            $sparepart->kode_sparepart = $request->kode_sparepart;
-            $sparepart->nama_sparepart = $request->nama_sparepart;
-            $sparepart->merk_sparepart = $request->merk_sparepart;
-            $sparepart->tipe_sparepart = $request->tipe_sparepart;
-            $sparepart->gambar_sparepart = $fileName;
-            $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
-            $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
-            $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
-            $sparepart->jumlah_minimal = $request->jumlah_minimal;
+                    $sparepart->kode_sparepart = $request->kode_sparepart;
+                    $sparepart->nama_sparepart = $request->nama_sparepart;
+                    $sparepart->merk_sparepart = $request->merk_sparepart;
+                    $sparepart->tipe_sparepart = $request->tipe_sparepart;
+                    $sparepart->gambar_sparepart = $fileName;
+                    $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
+                    $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
+                    $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
+                    $sparepart->jumlah_minimal = $request->jumlah_minimal;
+
+                }
+
+                
+            // $sparepart->kode_sparepart = $request->kode_sparepart;
+            // $sparepart->nama_sparepart = $request->nama_sparepart;
+            // $sparepart->merk_sparepart = $request->merk_sparepart;
+            // $sparepart->tipe_sparepart = $request->tipe_sparepart;
+            // $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
+            // $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
+            // $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
+            // $sparepart->jumlah_minimal = $request->jumlah_minimal;
+            // if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
+            //     $dir = 'images/sparepart/';
+            //     $path = 'http://127.0.0.1:8000/images/sparepart/'; //sesuai path yang dipake
+            //     $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
+            //     $fileName = str_random() . '.' . $extension;
+            //     $file = $path . $fileName;
+            //     $request->file('gambar_sparepart')->move($dir, $fileName);
+            //     $sparepart->gambar_sparepart = $file;
+            // }
 
             $success = $sparepart->save();
 
@@ -201,6 +256,94 @@ class sparepartcontroller extends Controller
                 return response()->json('Success Delete', 204);
             else {
                 return response()->json('Error Delete', 500);
+            }
+        }
+    }
+
+    private $photo_path;
+    public function __construct() {
+        $this->photo_path = 'http://192.168.1.23:8000/images/sparepart/';
+    }
+
+    public function indexMobile()
+    {
+        $spareparts = Sparepart::all();
+        return response()->json($spareparts, 200);
+    }
+
+
+    public function storeMobile(Request $request)
+    {
+        $sparepart = new sparepart;
+
+        $kode_spare = $request->kode_sparepart;
+
+        $no = Sparepart::where('kode_sparepart', 'like', $kode_spare.'%')
+                ->orderBy('kode_sparepart', 'desc')->pluck('kode_sparepart')->first();
+        if(!$no) {
+            $no = '001';
+            $sparepart->kode_sparepart = $kode_spare.$no;
+        }
+        else {
+            $sparepart->kode_sparepart = ++$no;
+        }
+
+        
+        $sparepart->nama_sparepart = $request->nama_sparepart;
+        $sparepart->merk_sparepart = $request->merk_sparepart;  
+        $sparepart->tipe_sparepart = $request->tipe_sparepart;
+        $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
+        $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
+        $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
+        $sparepart->jumlah_minimal = $request->jumlah_minimal;
+        
+        if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
+            $dir = 'images/sparepart/';
+            // $path = 'http://10.53.10.70:8000/images/sparepart/'; //sesuai path yang dipake
+            $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
+            $fileName = str_random() . '.' . $extension;
+            $file = $this->photo_path . $fileName;
+            $request->file('gambar_sparepart')->move($dir, $fileName);
+            $sparepart->gambar_sparepart = $file;
+        }
+        
+        $success = $sparepart->save();
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
+        }
+    }
+    public function updateMobile(Request $request, $id)
+    {
+        $sparepart = Sparepart::where('id', $id)->first();
+        if (is_null($sparepart)) {
+            return response()->json('Sparepart not found', 404);
+        }
+        else {
+            $sparepart->kode_sparepart = $request->kode_sparepart;
+            $sparepart->nama_sparepart = $request->nama_sparepart;
+            $sparepart->merk_sparepart = $request->merk_sparepart;
+            $sparepart->tipe_sparepart = $request->tipe_sparepart;
+            $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
+            $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
+            $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
+            $sparepart->jumlah_minimal = $request->jumlah_minimal;
+            if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
+                $dir = 'images/sparepart/';
+                // $path = 'http://10.53.10.70:8000/images/sparepart/'; //sesuai path yang dipake
+                $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
+                $fileName = str_random() . '.' . $extension;
+                $file = $this->photo_path . $fileName;
+                $request->file('gambar_sparepart')->move($dir, $fileName);
+                $sparepart->gambar_sparepart = $file;
+            }
+            $success = $sparepart->save();
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } 
+            else {
+                return response()->json('Success Updating', 204);
             }
         }
     }

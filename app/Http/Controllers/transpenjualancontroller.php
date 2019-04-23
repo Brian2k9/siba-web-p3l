@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\trans_penjualan;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class transpenjualancontroller extends Controller
@@ -57,7 +59,7 @@ class transpenjualancontroller extends Controller
         if (!$success) {
             return response()->json('Error Saving', 500);
         } else {
-            return response()->json('Success', 201);
+            return response()->json('Success', 204);
         }
     }
 
@@ -149,6 +151,47 @@ class transpenjualancontroller extends Controller
             else {
                 return response()->json('Error Delete', 500);
             }
+        }
+    }
+
+    public function indexMobile()
+    {
+        $transpenjualans = trans_penjualan::all();
+
+        return response()->json($transpenjualans, 200);
+    }
+
+    public function storeMobile(Request $request)
+    {
+        $v = Validator::make($request->all(),[
+            'id_pelanggan' => 'exists:pelanggans,id',
+            'id_cabang' => 'exists:cabangs,id'
+         ]);
+ 
+         if($v->fails()) {
+             return response()->json([
+                 'status' => 'error',
+                 'errors' => $v->errors()
+             ], 404);
+         }
+
+        $transpenjualan = new trans_penjualan;
+        $transpenjualan->id_pelanggan = $request->id_pelanggan;
+        $transpenjualan->id_cabang = $request->id_cabang;
+        $transpenjualan->total_harga_trans = 0;
+        $transpenjualan->discount_penjualan = 0;
+        $transpenjualan->grand_total = 0;
+        $transpenjualan->status_transaksi = 'Belum';
+        $transpenjualan->status_pembayaran = 'Belum';
+        $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
+        $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
+
+        $success = $transpenjualan->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
         }
     }
 }

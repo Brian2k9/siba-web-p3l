@@ -18,7 +18,7 @@ class CreateDetailtranssparepartTable extends Migration
             $table->bigInteger('id_trans_penjualan')->unsigned();
             $table->bigInteger('id_sparepart')->unsigned();
             $table->integer('jumlah_barang');
-            $table->float('total_harga_jasa');
+            $table->float('total_harga_spare');
             $table->timestamps();
         });
 

@@ -9,7 +9,7 @@
                   </div>
 
                 <div class="card-body">
-                  <div align="center">
+                  
                     <form v-on:submit.prevent="saveForm()" class="form-horizontal" >
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Merk Kendaraan</label>
@@ -35,7 +35,7 @@
                       </div>
                       <br>
                     </form>
-                  </div>
+                  
                 </div>
             </div>
         </div>

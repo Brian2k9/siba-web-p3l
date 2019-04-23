@@ -165,4 +165,30 @@ class pegawaicontroller extends Controller
             }
         }
     }
+
+    public function indexMobile()
+    {
+        $pegawais = Pegawai::all();
+        return response()->json($pegawais, 200);
+    }
+    public function login(Request $request) {
+        $no_telp = $request->no_telp_pegawai;
+        $password = $request->password_pegawai;
+        $data = pegawai::where('no_telp_pegawai', $no_telp)->first();
+        if($data) {
+            //no_telp found
+            if(pegawai::where('password_pegawai', $password)->first()) {
+                //return role
+                return response()->json($data, 200);
+            }
+            else {
+                //return fail wrong password
+                return response()->json("Login Failed", 404);
+            }
+        }
+        else {
+            //return fail login not found
+            return response()->json("Login Failed", 404);
+        }
+    }
 }

@@ -3138,6 +3138,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3150,12 +3168,16 @@ __webpack_require__.r(__webpack_exports__);
         password_pegawai: '',
         id_cabang: ''
       },
+      roles: [],
+      cabangs: [],
       errors: [],
       message: ''
     };
   },
   mounted: function mounted() {
     var app = this;
+    app.getRoles();
+    app.getCabangs();
   },
   methods: {
     alert: function alert(pesan) {
@@ -3163,6 +3185,22 @@ __webpack_require__.r(__webpack_exports__);
         title: "Berhasil Menambah Pegawai",
         text: pesan,
         icon: "success"
+      });
+    },
+    getRoles: function getRoles() {
+      var app = this;
+      axios.get('/api/role' + '/all').then(function (resp) {
+        app.roles = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getCabangs: function getCabangs() {
+      var app = this;
+      axios.get('/api/cabang' + '/all').then(function (resp) {
+        app.cabangs = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
       });
     },
     saveForm: function saveForm() {
@@ -3276,6 +3314,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3288,6 +3344,8 @@ __webpack_require__.r(__webpack_exports__);
         password_pegawai: '',
         id_cabang: ''
       },
+      roles: [],
+      cabangs: [],
       pegawaiId: null,
       errors: [],
       message: ''
@@ -3303,6 +3361,8 @@ __webpack_require__.r(__webpack_exports__);
     }).catch(function (resp) {
       alert("Gagal memuat pegawai");
     });
+    app.getRoles();
+    app.getCabangs();
   },
   methods: {
     alert: function alert(pesan) {
@@ -3310,6 +3370,22 @@ __webpack_require__.r(__webpack_exports__);
         title: "Berhasil Mengubah Pegawai",
         text: pesan,
         icon: "success"
+      });
+    },
+    getRoles: function getRoles() {
+      var app = this;
+      axios.get('/api/role' + '/all').then(function (resp) {
+        app.roles = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getCabangs: function getCabangs() {
+      var app = this;
+      axios.get('/api/cabang' + '/all').then(function (resp) {
+        app.cabangs = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
       });
     },
     saveForm: function saveForm() {
@@ -4079,6 +4155,23 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5169,7 +5262,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bg{\n    background-color:silver;\n    height: auto;\n}\n.card-tools{\nmargin-top: 10px;\n}\nth{\n    background-color: darkgray;\n}\n.card{\n    padding: 18px 30px 15px 30px;\n}\n.footer{\n    background-color: black;\n    height: auto;\n}\n.fade-enter,\n.fade-leave-to {\nopacity: 0;\n-webkit-transform: rotateY(50deg);\n        transform: rotateY(50deg);\n}\n.fade-enter-to,\n.fade-leave {\nopacity: 1;\n-webkit-transform: rotateY(0deg);\n        transform: rotateY(0deg);\n}\n.fade-enter-active,\n.fade-leave-active {\ntransition: opacity, -webkit-transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out, -webkit-transform 200ms ease-out;\n}\n", ""]);
+exports.push([module.i, "\n.bg{\n    background-color:silver;\n    height: auto;\n}\n.card-tools{\nmargin-top: 10px;\n}\ntable{\n    font-size: small;\n    table-layout: fixed;\n}\nth{\n    background-color: rgb(46, 46, 134);\n    -webkit-text-fill-color: antiquewhite;\n}\ntd{\n    background-color: rgb(64, 63, 65);\n    -webkit-text-fill-color: antiquewhite;\n}\n.card{\n    padding: 18px 30px 15px 30px;\n}\n.footer{\n    background-color: black;\n    height: auto;\n}\n.fade-enter,\n.fade-leave-to {\nopacity: 0;\n-webkit-transform: rotateY(50deg);\n        transform: rotateY(50deg);\n}\n.fade-enter-to,\n.fade-leave {\nopacity: 1;\n-webkit-transform: rotateY(0deg);\n        transform: rotateY(0deg);\n}\n.fade-enter-active,\n.fade-leave-active {\ntransition: opacity, -webkit-transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out, -webkit-transform 200ms ease-out;\n}\n", ""]);
 
 // exports
 
@@ -7709,7 +7802,7 @@ var render = function() {
                 },
                 [
                   _vm._v("Tambah Cabang   "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _c("i", { staticClass: "fas fa-plus-circle" })
                 ]
               )
             ],
@@ -7901,204 +7994,202 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Cabang")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.cabang.nama_cabang,
-                            expression: "cabang.nama_cabang"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Cabang",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.cabang.nama_cabang },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.cabang,
-                              "nama_cabang",
-                              $event.target.value
-                            )
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Cabang")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cabang.nama_cabang,
+                          expression: "cabang.nama_cabang"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_cabang
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_cabang[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Alamat Cabang")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.cabang.alamat_cabang,
-                            expression: "cabang.alamat_cabang"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Alamat Cabang",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.cabang.alamat_cabang },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.cabang,
-                              "alamat_cabang",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.alamat_cabang
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.alamat_cabang[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nomor Telepon Cabang")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.cabang.no_telp_cabang,
-                            expression: "cabang.no_telp_cabang"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nomor Telepon Cabang",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.cabang.no_telp_cabang },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.cabang,
-                                "no_telp_cabang",
-                                $event.target.value
-                              )
-                            },
-                            _vm.onlyNumbers
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.no_telp_cabang
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.no_telp_cabang[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/cabang" }
-                          },
-                          [
-                            _vm._v("Batal    "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Cabang",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.cabang.nama_cabang },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.cabang,
+                            "nama_cabang",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_cabang
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_cabang[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Alamat Cabang")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cabang.alamat_cabang,
+                          expression: "cabang.alamat_cabang"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Alamat Cabang",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.cabang.alamat_cabang },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.cabang,
+                            "alamat_cabang",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.alamat_cabang
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.alamat_cabang[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nomor Telepon Cabang")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cabang.no_telp_cabang,
+                          expression: "cabang.no_telp_cabang"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nomor Telepon Cabang",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.cabang.no_telp_cabang },
+                      on: {
+                        input: [
+                          function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.cabang,
+                              "no_telp_cabang",
+                              $event.target.value
+                            )
+                          },
+                          _vm.onlyNumbers
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.no_telp_cabang
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.no_telp_cabang[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/cabang" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -8153,204 +8244,202 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Cabang")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.cabang.nama_cabang,
-                            expression: "cabang.nama_cabang"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Cabang",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.cabang.nama_cabang },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.cabang,
-                              "nama_cabang",
-                              $event.target.value
-                            )
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Cabang")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cabang.nama_cabang,
+                          expression: "cabang.nama_cabang"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_cabang
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_cabang[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Alamat Cabang")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.cabang.alamat_cabang,
-                            expression: "cabang.alamat_cabang"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Alamat Cabang",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.cabang.alamat_cabang },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.cabang,
-                              "alamat_cabang",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.alamat_cabang
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.alamat_cabang[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nomor Telepon Cabang")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.cabang.no_telp_cabang,
-                            expression: "cabang.no_telp_cabang"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nomor Telepon Cabang",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.cabang.no_telp_cabang },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.cabang,
-                                "no_telp_cabang",
-                                $event.target.value
-                              )
-                            },
-                            _vm.onlyNumbers
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.no_telp_cabang
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.no_telp_cabang[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/cabang" }
-                          },
-                          [
-                            _vm._v("Batal    "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Cabang",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.cabang.nama_cabang },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.cabang,
+                            "nama_cabang",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_cabang
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_cabang[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Alamat Cabang")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cabang.alamat_cabang,
+                          expression: "cabang.alamat_cabang"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Alamat Cabang",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.cabang.alamat_cabang },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.cabang,
+                            "alamat_cabang",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.alamat_cabang
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.alamat_cabang[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nomor Telepon Cabang")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cabang.no_telp_cabang,
+                          expression: "cabang.no_telp_cabang"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nomor Telepon Cabang",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.cabang.no_telp_cabang },
+                      on: {
+                        input: [
+                          function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.cabang,
+                              "no_telp_cabang",
+                              $event.target.value
+                            )
+                          },
+                          _vm.onlyNumbers
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.no_telp_cabang
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.no_telp_cabang[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/cabang" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -8477,7 +8566,7 @@ var render = function() {
                 },
                 [
                   _vm._v("Tambah Jasa Service   "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _c("i", { staticClass: "fas fa-plus-circle" })
                 ]
               )
             ],
@@ -8667,146 +8756,140 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Jasa")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.jasa.nama_jasa,
-                            expression: "jasa.nama_jasa"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Jasa",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.jasa.nama_jasa },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.jasa, "nama_jasa", $event.target.value)
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Jasa")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.jasa.nama_jasa,
+                          expression: "jasa.nama_jasa"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_jasa
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_jasa[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Harga Jasa")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.jasa.harga_jasa,
-                            expression: "jasa.harga_jasa"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Harga Jasa",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.jasa.harga_jasa },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.jasa,
-                              "harga_jasa",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.harga_jasa
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.harga_jasa[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/jasa_service" }
-                          },
-                          [
-                            _vm._v("Batal   "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Jasa",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.jasa.nama_jasa },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.jasa, "nama_jasa", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_jasa
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_jasa[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Harga Jasa")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.jasa.harga_jasa,
+                          expression: "jasa.harga_jasa"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Harga Jasa",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.jasa.harga_jasa },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.jasa, "harga_jasa", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.harga_jasa
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.harga_jasa[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/jasa_service" }
+                        },
+                        [
+                          _vm._v("Batal   "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -8863,146 +8946,140 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Jasa")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.jasa.nama_jasa,
-                            expression: "jasa.nama_jasa"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Jasa",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.jasa.nama_jasa },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.jasa, "nama_jasa", $event.target.value)
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Jasa")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.jasa.nama_jasa,
+                          expression: "jasa.nama_jasa"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_jasa
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_jasa[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Harga Jasa")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.jasa.harga_jasa,
-                            expression: "jasa.harga_jasa"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Harga Jasa",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.jasa.harga_jasa },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.jasa,
-                              "harga_jasa",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.harga_jasa
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.harga_jasa[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/jasa_service" }
-                          },
-                          [
-                            _vm._v("Batal   "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Jasa",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.jasa.nama_jasa },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.jasa, "nama_jasa", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_jasa
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_jasa[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Harga Jasa")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.jasa.harga_jasa,
+                          expression: "jasa.harga_jasa"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Harga Jasa",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.jasa.harga_jasa },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.jasa, "harga_jasa", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.harga_jasa
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.harga_jasa[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/jasa_service" }
+                        },
+                        [
+                          _vm._v("Batal   "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -9070,7 +9147,7 @@ var render = function() {
                 },
                 [
                   _vm._v("Tambah Kendaraan   "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _c("i", { staticClass: "fas fa-plus-circle" })
                 ]
               )
             ],
@@ -9258,150 +9335,148 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Merk Kendaraan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.kendaraan.merk_kendaraan,
-                            expression: "kendaraan.merk_kendaraan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Merk Kendaraan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.kendaraan.merk_kendaraan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.kendaraan,
-                              "merk_kendaraan",
-                              $event.target.value
-                            )
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Merk Kendaraan")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.kendaraan.merk_kendaraan,
+                          expression: "kendaraan.merk_kendaraan"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.merk_kendaraan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.merk_kendaraan[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Tipe Kendaraan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.kendaraan.tipe_kendaraan,
-                            expression: "kendaraan.tipe_kendaraan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Tipe Kendaraan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.kendaraan.tipe_kendaraan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.kendaraan,
-                              "tipe_kendaraan",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.tipe_kendaraan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.tipe_kendaraan[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/kendaraan" }
-                          },
-                          [
-                            _vm._v("Batal   "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Merk Kendaraan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.kendaraan.merk_kendaraan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.kendaraan,
+                            "merk_kendaraan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.merk_kendaraan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.merk_kendaraan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Tipe Kendaraan")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.kendaraan.tipe_kendaraan,
+                          expression: "kendaraan.tipe_kendaraan"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Tipe Kendaraan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.kendaraan.tipe_kendaraan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.kendaraan,
+                            "tipe_kendaraan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.tipe_kendaraan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.tipe_kendaraan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/kendaraan" }
+                        },
+                        [
+                          _vm._v("Batal   "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -9458,150 +9533,148 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Merk Kendaraan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.kendaraan.merk_kendaraan,
-                            expression: "kendaraan.merk_kendaraan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Merk Kendaraan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.kendaraan.merk_kendaraan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.kendaraan,
-                              "merk_kendaraan",
-                              $event.target.value
-                            )
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Merk Kendaraan")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.kendaraan.merk_kendaraan,
+                          expression: "kendaraan.merk_kendaraan"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.merk_kendaraan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.merk_kendaraan[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Tipe Kendaraan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.kendaraan.tipe_kendaraan,
-                            expression: "kendaraan.tipe_kendaraan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Tipe Kendaraan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.kendaraan.tipe_kendaraan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.kendaraan,
-                              "tipe_kendaraan",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.tipe_kendaraan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.tipe_kendaraan[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/kendaraan" }
-                          },
-                          [
-                            _vm._v("Batal   "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Merk Kendaraan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.kendaraan.merk_kendaraan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.kendaraan,
+                            "merk_kendaraan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.merk_kendaraan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.merk_kendaraan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Tipe Kendaraan")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.kendaraan.tipe_kendaraan,
+                          expression: "kendaraan.tipe_kendaraan"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Tipe Kendaraan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.kendaraan.tipe_kendaraan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.kendaraan,
+                            "tipe_kendaraan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.tipe_kendaraan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.tipe_kendaraan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/kendaraan" }
+                        },
+                        [
+                          _vm._v("Batal   "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -9897,40 +9970,65 @@ var render = function() {
                     [_vm._v("ID Role")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      directives: [
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pegawai.id_role,
-                          expression: "pegawai.id_role"
-                        }
-                      ],
-                      staticClass: "input is-primary",
-                      style: { width: "35%" },
-                      attrs: {
-                        type: "text",
-                        required: "",
-                        placeholder: "ID Role",
-                        autofocus: ""
-                      },
-                      domProps: { value: _vm.pegawai.id_role },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.pegawai.id_role,
+                              expression: "pegawai.id_role"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.pegawai,
+                                "id_role",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                          _vm.$set(_vm.pegawai, "id_role", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.id_role
-                      ? _c("span", { staticClass: "help is-danger" }, [
-                          _vm._v(" " + _vm._s(_vm.errors.id_role[0]))
-                        ])
-                      : _vm._e()
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Role")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.roles, function(role) {
+                            return _c(
+                              "option",
+                              { domProps: { value: role.id } },
+                              [_vm._v(_vm._s(role.id))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_role
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_role[0]))
+                          ])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -10202,44 +10300,65 @@ var render = function() {
                     [_vm._v("ID Cabang")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      directives: [
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pegawai.id_cabang,
-                          expression: "pegawai.id_cabang"
-                        }
-                      ],
-                      staticClass: "input is-primary",
-                      style: { width: "35%" },
-                      attrs: {
-                        type: "text",
-                        required: "",
-                        placeholder: "ID Cabang",
-                        autofocus: ""
-                      },
-                      domProps: { value: _vm.pegawai.id_cabang },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.pegawai.id_cabang,
+                              expression: "pegawai.id_cabang"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.pegawai,
+                                "id_cabang",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                          _vm.$set(
-                            _vm.pegawai,
-                            "id_cabang",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.id_cabang
-                      ? _c("span", { staticClass: "help is-danger" }, [
-                          _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
-                        ])
-                      : _vm._e()
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Cabang")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.cabangs, function(cabang) {
+                            return _c(
+                              "option",
+                              { domProps: { value: cabang.id } },
+                              [_vm._v(_vm._s(cabang.id))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_cabang
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
+                          ])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -10347,40 +10466,65 @@ var render = function() {
                     [_vm._v("ID Role")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      directives: [
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pegawai.id_role,
-                          expression: "pegawai.id_role"
-                        }
-                      ],
-                      staticClass: "input is-primary",
-                      style: { width: "35%" },
-                      attrs: {
-                        type: "text",
-                        required: "",
-                        placeholder: "ID Role",
-                        autofocus: ""
-                      },
-                      domProps: { value: _vm.pegawai.id_role },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.pegawai.id_role,
+                              expression: "pegawai.id_role"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.pegawai,
+                                "id_role",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                          _vm.$set(_vm.pegawai, "id_role", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.id_role
-                      ? _c("span", { staticClass: "help is-danger" }, [
-                          _vm._v(" " + _vm._s(_vm.errors.id_role[0]))
-                        ])
-                      : _vm._e()
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Role")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.roles, function(role) {
+                            return _c(
+                              "option",
+                              { domProps: { value: role.id } },
+                              [_vm._v(_vm._s(role.id))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_role
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_role[0]))
+                          ])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -10652,44 +10796,65 @@ var render = function() {
                     [_vm._v("ID Cabang")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      directives: [
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pegawai.id_cabang,
-                          expression: "pegawai.id_cabang"
-                        }
-                      ],
-                      staticClass: "input is-primary",
-                      style: { width: "35%" },
-                      attrs: {
-                        type: "text",
-                        required: "",
-                        placeholder: "ID Cabang",
-                        autofocus: ""
-                      },
-                      domProps: { value: _vm.pegawai.id_cabang },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.pegawai.id_cabang,
+                              expression: "pegawai.id_cabang"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.pegawai,
+                                "id_cabang",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                          _vm.$set(
-                            _vm.pegawai,
-                            "id_cabang",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.id_cabang
-                      ? _c("span", { staticClass: "help is-danger" }, [
-                          _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
-                        ])
-                      : _vm._e()
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Cabang")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.cabangs, function(cabang) {
+                            return _c(
+                              "option",
+                              { domProps: { value: cabang.id } },
+                              [_vm._v(_vm._s(cabang.id))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_cabang
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
+                          ])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -10981,206 +11146,202 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Pelanggan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pelanggan.nama_pelanggan,
-                            expression: "pelanggan.nama_pelanggan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Pelanggan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.pelanggan.nama_pelanggan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.pelanggan,
-                              "nama_pelanggan",
-                              $event.target.value
-                            )
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Pelanggan")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pelanggan.nama_pelanggan,
+                          expression: "pelanggan.nama_pelanggan"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_pelanggan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_pelanggan[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Alamat Pelanggan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pelanggan.alamat_pelanggan,
-                            expression: "pelanggan.alamat_pelanggan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Alamat Pelanggan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.pelanggan.alamat_pelanggan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.pelanggan,
-                              "alamat_pelanggan",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.alamat_pelanggan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.alamat_pelanggan[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nomor Telepon Pelanggan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pelanggan.no_telp_pelanggan,
-                            expression: "pelanggan.no_telp_pelanggan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nomor Telepon Pelanggan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.pelanggan.no_telp_pelanggan },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.pelanggan,
-                                "no_telp_pelanggan",
-                                $event.target.value
-                              )
-                            },
-                            _vm.onlyNumbers
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.no_telp_pelanggan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(
-                              " " + _vm._s(_vm.errors.no_telp_pelanggan[0])
-                            )
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/pelanggan" }
-                          },
-                          [
-                            _vm._v("Batal    "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Pelanggan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.pelanggan.nama_pelanggan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.pelanggan,
+                            "nama_pelanggan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_pelanggan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_pelanggan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Alamat Pelanggan")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pelanggan.alamat_pelanggan,
+                          expression: "pelanggan.alamat_pelanggan"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Alamat Pelanggan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.pelanggan.alamat_pelanggan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.pelanggan,
+                            "alamat_pelanggan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.alamat_pelanggan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.alamat_pelanggan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nomor Telepon Pelanggan")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pelanggan.no_telp_pelanggan,
+                          expression: "pelanggan.no_telp_pelanggan"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nomor Telepon Pelanggan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.pelanggan.no_telp_pelanggan },
+                      on: {
+                        input: [
+                          function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.pelanggan,
+                              "no_telp_pelanggan",
+                              $event.target.value
+                            )
+                          },
+                          _vm.onlyNumbers
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.no_telp_pelanggan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.no_telp_pelanggan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/pelanggan" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -11237,206 +11398,202 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Pelanggan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pelanggan.nama_pelanggan,
-                            expression: "pelanggan.nama_pelanggan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Pelanggan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.pelanggan.nama_pelanggan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.pelanggan,
-                              "nama_pelanggan",
-                              $event.target.value
-                            )
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Pelanggan")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pelanggan.nama_pelanggan,
+                          expression: "pelanggan.nama_pelanggan"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_pelanggan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_pelanggan[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Alamat Pelanggan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pelanggan.alamat_pelanggan,
-                            expression: "pelanggan.alamat_pelanggan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Alamat Pelanggan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.pelanggan.alamat_pelanggan },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.pelanggan,
-                              "alamat_pelanggan",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.alamat_pelanggan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.alamat_pelanggan[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nomor Telepon Pelanggan")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pelanggan.no_telp_pelanggan,
-                            expression: "pelanggan.no_telp_pelanggan"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nomor Telepon Pelanggan",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.pelanggan.no_telp_pelanggan },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.pelanggan,
-                                "no_telp_pelanggan",
-                                $event.target.value
-                              )
-                            },
-                            _vm.onlyNumbers
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.no_telp_pelanggan
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(
-                              " " + _vm._s(_vm.errors.no_telp_pelanggan[0])
-                            )
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/pelanggan" }
-                          },
-                          [
-                            _vm._v("Batal   "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Pelanggan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.pelanggan.nama_pelanggan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.pelanggan,
+                            "nama_pelanggan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_pelanggan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_pelanggan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Alamat Pelanggan")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pelanggan.alamat_pelanggan,
+                          expression: "pelanggan.alamat_pelanggan"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Alamat Pelanggan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.pelanggan.alamat_pelanggan },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.pelanggan,
+                            "alamat_pelanggan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.alamat_pelanggan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.alamat_pelanggan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nomor Telepon Pelanggan")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pelanggan.no_telp_pelanggan,
+                          expression: "pelanggan.no_telp_pelanggan"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nomor Telepon Pelanggan",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.pelanggan.no_telp_pelanggan },
+                      on: {
+                        input: [
+                          function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.pelanggan,
+                              "no_telp_pelanggan",
+                              $event.target.value
+                            )
+                          },
+                          _vm.onlyNumbers
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.no_telp_pelanggan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.no_telp_pelanggan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/pelanggan" }
+                        },
+                        [
+                          _vm._v("Batal   "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -11686,95 +11843,93 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Role")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.role.nama_role,
-                            expression: "role.nama_role"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Role",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.role.nama_role },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.role, "nama_role", $event.target.value)
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Role")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.role.nama_role,
+                          expression: "role.nama_role"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_role
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_role[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/role" }
-                          },
-                          [
-                            _vm._v("Batal   "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Role",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.role.nama_role },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.role, "nama_role", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_role
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_role[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/role" }
+                        },
+                        [
+                          _vm._v("Batal   "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -11829,95 +11984,93 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Role")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.role.nama_role,
-                            expression: "role.nama_role"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Role",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.role.nama_role },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.role, "nama_role", $event.target.value)
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Role")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.role.nama_role,
+                          expression: "role.nama_role"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_role
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_role[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/role" }
-                          },
-                          [
-                            _vm._v("Batal   "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Role",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.role.nama_role },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.role, "nama_role", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_role
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_role[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/role" }
+                        },
+                        [
+                          _vm._v("Batal   "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -12135,6 +12288,66 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "navbar-item has-dropdown is-hoverable" },
+                [
+                  _c("a", { staticClass: "navbar-link" }, [
+                    _vm._v("\r\n        Transaksi\r\n      ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "navbar-dropdown" }, [
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/detail_jasas" }
+                          },
+                          [_vm._v("Detail Jasa Service")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/detail_sparepart" }
+                          },
+                          [_vm._v("Detail Sparepart")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/trans_penjualan" }
+                          },
+                          [_vm._v("Transaksi Penjualan")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
               _c("a", { staticClass: "navbar-item" }, [
                 _vm._v("\r\n        Pemesanan\r\n      ")
               ]),
@@ -12260,7 +12473,7 @@ var render = function() {
                 },
                 [
                   _vm._v("Tambah Sparepart   "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _c("i", { staticClass: "fas fa-plus-circle" })
                 ]
               )
             ],
@@ -12724,7 +12937,7 @@ var render = function() {
                         ]),
                     _vm._v(" "),
                     _c("input", {
-                      staticClass: "form-control",
+                      staticClass: "file-label",
                       attrs: { name: "image", type: "file" },
                       on: { change: _vm.onFileSelected }
                     }),
@@ -13258,7 +13471,7 @@ var render = function() {
                         ]),
                     _vm._v(" "),
                     _c("input", {
-                      staticClass: "form-control",
+                      staticClass: "file-label",
                       attrs: { name: "image", type: "file" },
                       on: { change: _vm.onFileSelected }
                     }),
@@ -13764,255 +13977,253 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Supplier")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.supplier.nama_supplier,
-                            expression: "supplier.nama_supplier"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Supplier",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.supplier.nama_supplier },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.supplier,
-                              "nama_supplier",
-                              $event.target.value
-                            )
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Supplier")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier.nama_supplier,
+                          expression: "supplier.nama_supplier"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_supplier
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_supplier[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Sales Supplier")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.supplier.sales_supplier,
-                            expression: "supplier.sales_supplier"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Sales Supplier",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.supplier.sales_supplier },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.supplier,
-                              "sales_supplier",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.sales_supplier
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.sales_supplier[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nomor Telepon Supplier")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.supplier.no_telp_supplier,
-                            expression: "supplier.no_telp_supplier"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nomor Telepon Supplier",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.supplier.no_telp_supplier },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.supplier,
-                                "no_telp_supplier",
-                                $event.target.value
-                              )
-                            },
-                            _vm.onlyNumbers
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.no_telp_supplier
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.no_telp_supplier[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Alamat Supplier")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.supplier.alamat_supplier,
-                            expression: "supplier.alamat_supplier"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Alamat Supplier",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.supplier.alamat_supplier },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.supplier,
-                              "alamat_supplier",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.alamat_supplier
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.alamat_supplier[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/supplier" }
-                          },
-                          [
-                            _vm._v("Batal    "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Supplier",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.supplier.nama_supplier },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.supplier,
+                            "nama_supplier",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_supplier
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_supplier[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Sales Supplier")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier.sales_supplier,
+                          expression: "supplier.sales_supplier"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Sales Supplier",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.supplier.sales_supplier },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.supplier,
+                            "sales_supplier",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.sales_supplier
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.sales_supplier[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nomor Telepon Supplier")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier.no_telp_supplier,
+                          expression: "supplier.no_telp_supplier"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nomor Telepon Supplier",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.supplier.no_telp_supplier },
+                      on: {
+                        input: [
+                          function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.supplier,
+                              "no_telp_supplier",
+                              $event.target.value
+                            )
+                          },
+                          _vm.onlyNumbers
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.no_telp_supplier
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.no_telp_supplier[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Alamat Supplier")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier.alamat_supplier,
+                          expression: "supplier.alamat_supplier"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Alamat Supplier",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.supplier.alamat_supplier },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.supplier,
+                            "alamat_supplier",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.alamat_supplier
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.alamat_supplier[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/supplier" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -14069,255 +14280,253 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", { attrs: { align: "center" } }, [
-              _c(
-                "form",
-                {
-                  staticClass: "form-horizontal",
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.saveForm()
-                    }
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
                   }
-                },
-                [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nama Supplier")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.supplier.nama_supplier,
-                            expression: "supplier.nama_supplier"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nama Supplier",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.supplier.nama_supplier },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.supplier,
-                              "nama_supplier",
-                              $event.target.value
-                            )
-                          }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nama Supplier")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier.nama_supplier,
+                          expression: "supplier.nama_supplier"
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.nama_supplier
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.nama_supplier[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Sales Supplier")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.supplier.sales_supplier,
-                            expression: "supplier.sales_supplier"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Sales Supplier",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.supplier.sales_supplier },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.supplier,
-                              "sales_supplier",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.sales_supplier
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.sales_supplier[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Nomor Telepon Supplier")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.supplier.no_telp_supplier,
-                            expression: "supplier.no_telp_supplier"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Nomor Telepon Supplier",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.supplier.no_telp_supplier },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.supplier,
-                                "no_telp_supplier",
-                                $event.target.value
-                              )
-                            },
-                            _vm.onlyNumbers
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.no_telp_supplier
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.no_telp_supplier[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "col-md-2 control-label",
-                        attrs: { for: "name" }
-                      },
-                      [_vm._v("Alamat Supplier")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.supplier.alamat_supplier,
-                            expression: "supplier.alamat_supplier"
-                          }
-                        ],
-                        staticClass: "input is-primary",
-                        style: { width: "35%" },
-                        attrs: {
-                          type: "text",
-                          required: "",
-                          placeholder: "Alamat Supplier",
-                          autofocus: ""
-                        },
-                        domProps: { value: _vm.supplier.alamat_supplier },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.supplier,
-                              "alamat_supplier",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.alamat_supplier
-                        ? _c("span", { staticClass: "help is-danger" }, [
-                            _vm._v(" " + _vm._s(_vm.errors.alamat_supplier[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-4 col-md-offset-2" },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "button is-warning",
-                            attrs: { to: "/supplier" }
-                          },
-                          [
-                            _vm._v("Batal    "),
-                            _c("i", { staticClass: "fas fa-window-close" })
-                          ]
-                        )
                       ],
-                      1
-                    )
-                  ]),
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nama Supplier",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.supplier.nama_supplier },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.supplier,
+                            "nama_supplier",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.nama_supplier
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.nama_supplier[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Sales Supplier")]
+                  ),
                   _vm._v(" "),
-                  _c("br")
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier.sales_supplier,
+                          expression: "supplier.sales_supplier"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Sales Supplier",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.supplier.sales_supplier },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.supplier,
+                            "sales_supplier",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.sales_supplier
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.sales_supplier[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nomor Telepon Supplier")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier.no_telp_supplier,
+                          expression: "supplier.no_telp_supplier"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Nomor Telepon Supplier",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.supplier.no_telp_supplier },
+                      on: {
+                        input: [
+                          function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.supplier,
+                              "no_telp_supplier",
+                              $event.target.value
+                            )
+                          },
+                          _vm.onlyNumbers
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.no_telp_supplier
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.no_telp_supplier[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Alamat Supplier")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier.alamat_supplier,
+                          expression: "supplier.alamat_supplier"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Alamat Supplier",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.supplier.alamat_supplier },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.supplier,
+                            "alamat_supplier",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.alamat_supplier
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.alamat_supplier[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/supplier" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
           ])
         ])
       ])
@@ -32523,8 +32732,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\TCP2_8796\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\TCP2_8796\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

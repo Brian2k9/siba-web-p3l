@@ -7,7 +7,7 @@
                     <h3 class="card-header-title">List Jasa Service</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_jasa" class="button is-success">Tambah Jasa Service &nbsp; <i class="fas fa-user-plus fa-fw"></i></router-link>
+                      <router-link to="/tambah_jasa" class="button is-success">Tambah Jasa Service &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">

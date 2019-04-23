@@ -7,7 +7,7 @@
                     <h3 class="card-header-title">List Sparepart</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_sparepart" class="button is-success">Tambah Sparepart &nbsp; <i class="fas fa-user-plus fa-fw"></i></router-link>
+                      <router-link to="/tambah_sparepart" class="button is-success">Tambah Sparepart &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
@@ -17,7 +17,7 @@
                       <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama" v-bind:style="{width: '20%' }" v-model="pencarian" />
                     </div>
                     <br>
-                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
                         <th>Kode Sparepart</th>
                         <th>Nama Sparepart</th>

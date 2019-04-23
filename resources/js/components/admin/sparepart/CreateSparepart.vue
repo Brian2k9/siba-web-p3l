@@ -48,7 +48,7 @@
                          <div v-else>
                             <img :src="image" v-bind:style="{width: '100px', height: '100px' }"/> 
                          </div>
-                         <input name="image" type="file" @change="onFileSelected" class="form-control"/>
+                         <input name="image" type="file" @change="onFileSelected" class="file-label"/>
                
                         <span v-if="errors.gambar_sparepart" class="help is-danger"> {{ errors.gambar_sparepart[0]}}</span>
                         </div>

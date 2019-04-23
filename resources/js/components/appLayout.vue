@@ -21,8 +21,17 @@
     .card-tools{
     margin-top: 10px;
     }
+    table{
+        font-size: small;
+        table-layout: fixed;
+    }
     th{
-        background-color: darkgray;
+        background-color: rgb(46, 46, 134);
+        -webkit-text-fill-color: antiquewhite;
+    }
+    td{
+        background-color: rgb(64, 63, 65);
+        -webkit-text-fill-color: antiquewhite;
     }
     .card{
         padding: 18px 30px 15px 30px;

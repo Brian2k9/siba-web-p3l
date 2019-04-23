@@ -11,5 +11,5 @@ class detail_trans_pengadaan extends Model
     public $timestamps = true;
     protected $fillable = ['id_trans_pengadaan',
                             'id_sparepart',
-                            'jumlah_pengadan'];
+                            'jumlah_pengadaan'];
 }

@@ -19,6 +19,13 @@ class cabangcontroller extends Controller
         return response()->json($cabangs, 200);
     }
 
+    public function all()
+    {
+        //
+        return Cabang::all();
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -146,8 +153,9 @@ class cabangcontroller extends Controller
         
         else {
             $success = $cabang->delete();
-            if($success)
+            if($success) {
                 return response()->json('Success Delete', 200);
+            }
             else {
                 return response()->json('Error Delete', 500);
             }

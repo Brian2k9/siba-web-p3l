@@ -50,6 +50,23 @@
       </div>
     </div>
     
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+        Transaksi
+      </a>
+      
+      <div class="navbar-dropdown">
+          <a class="navbar-item">
+            <router-link to= "/detail_jasas"  class="navbar-item">Detail Jasa Service</router-link>
+          </a>
+          <a class="navbar-item">
+            <router-link to= "/detail_sparepart"  class="navbar-item">Detail Sparepart</router-link>
+          </a>
+          <a class="navbar-item">
+            <router-link to= "/trans_penjualan"  class="navbar-item">Transaksi Penjualan</router-link>
+          </a>
+      </div>
+    </div>
       
 
       <a class="navbar-item">

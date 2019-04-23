@@ -12,5 +12,5 @@ class detail_trans_sparepart extends Model
     protected $fillable = ['id_trans_penjualan',
                             'id_sparepart',
                             'jumlah_barang',
-                            'total_harga_trans'];
+                            'total_harga_spare'];
 }

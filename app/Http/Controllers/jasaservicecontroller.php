@@ -155,4 +155,13 @@ class jasaservicecontroller extends Controller
             }
         }
     }
+
+    /////////////////////////////////////////////////////////////////////// MOBILE
+
+    public function indexMobile()
+    {
+        $jasas = jasa_service::all();
+
+        return response()->json($jasas, 200);
+    }
 }

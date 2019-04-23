@@ -19,6 +19,13 @@ class rolecontroller extends Controller
         return response()->json($roles, 200);
     }
 
+    public function all()
+    {
+        //
+        return Role::all();
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

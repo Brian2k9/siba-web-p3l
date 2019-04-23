@@ -142,4 +142,12 @@ class kendaraancontroller extends Controller
             }
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
+    public function indexMobile()
+    {
+        $kendaraans = Kendaraan::all();
+
+        return response()->json($kendaraans, 200);
+    }
 }
