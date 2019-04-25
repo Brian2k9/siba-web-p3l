@@ -19,6 +19,13 @@ class pelanggancontroller extends Controller
         return response()->json($pelanggans, 200);
     }
 
+    public function all()
+    {
+        //
+        return Pelanggan::all();
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -19,7 +19,7 @@
    <div class="navbar-start">
     <div class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-link">
-        Kelola Data
+        <i class="fas fa-database"></i> &nbsp; Kelola Data
       </a>
       
       <div class="navbar-dropdown">
@@ -52,12 +52,12 @@
     
     <div class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-link">
-        Transaksi
+        <i class="fas fa-money-check-alt"></i> &nbsp; Transaksi
       </a>
       
       <div class="navbar-dropdown">
           <a class="navbar-item">
-            <router-link to= "/detail_jasas"  class="navbar-item">Detail Jasa Service</router-link>
+            <router-link to= "/detail_jasa"  class="navbar-item">Detail Jasa Service</router-link>
           </a>
           <a class="navbar-item">
             <router-link to= "/detail_sparepart"  class="navbar-item">Detail Sparepart</router-link>
@@ -70,12 +70,12 @@
       
 
       <a class="navbar-item">
-        Pemesanan
+        <i class="fas fa-clipboard-list"></i> &nbsp; Pemesanan
       </a>
 
       
         <a class="navbar-item">
-          Laporan
+          <i class="far fa-file-alt"></i> &nbsp; Laporan
         </a>
 
         

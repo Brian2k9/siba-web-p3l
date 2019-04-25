@@ -18,4 +18,12 @@ class trans_penjualan extends Model
                             'status_pembayaran',
                             'no_plat_kendaraan',
                             'tanggal_penjualan'];
+
+    public function cabang(){
+        return $this->belongsTo(Cabang::class, 'id_cabang');
+    }
+                        
+    public function pelanggan(){
+        return $this->belongsTo(Pelanggan::class, 'id_pelanggan');
+    }
 }

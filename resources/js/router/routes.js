@@ -38,6 +38,9 @@ import AdminKendaraan from '../components/admin/kendaraan/AdminKendaraan.vue'
 import CreateKendaraan from '../components/admin/kendaraan/CreateKendaraan.vue'
 import EditKendaraan from '../components/admin/kendaraan/EditKendaraan.vue'
 
+import transPenjualanIndex from '../components/admin/transaksiPenjualan/transPenjualanIndex.vue'
+import CreateTransaksiPenjualan from '../components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue'
+
 
 
 const routes = [
@@ -161,6 +164,16 @@ const routes = [
                 path:'/edit_kendaraan',
                 component: EditKendaraan
             },
+
+            {
+                path:'/trans_penjualan',
+                component: transPenjualanIndex
+            },
+            {
+                path:'/tambah_trans_penjualan',
+                component: CreateTransaksiPenjualan
+            },
+            
            
             
         ]

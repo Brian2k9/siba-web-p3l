@@ -12,4 +12,8 @@ class pelanggan extends Model
     protected $fillable = ['nama_pelanggan',
                             'alamat_pelanggan',
                             'no_telp_pelanggan'];
+
+    public function trans_penjualan(){
+        return $this->hasMany(trans_penjualan::class);
+    }   
 }

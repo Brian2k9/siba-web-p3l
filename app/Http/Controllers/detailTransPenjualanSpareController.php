@@ -128,4 +128,83 @@ class detailTransPenjualanSpareController extends Controller
             return response()->json('Success', 204);
         }
     }
+
+    public function updateMobile(Request $request, $id) 
+    {
+        $detailTransSpare = detail_trans_sparepart::find($id);
+
+        if(is_null($detailTransSpare)) {
+            return response()->json('Detail Transaksi Sparepart Penjualan Not Found', 404);
+        }
+        
+        else {
+            $transpenjualan = trans_penjualan::where('id', $request->id_trans_penjualan)->first();
+
+        if(is_null($transpenjualan)) {
+            return response()->json('Transaksi Penjualan not found', 404);
+        }
+
+        $sparepart = sparepart::where('id', $request->id_sparepart)->first();
+
+        if(is_null($sparepart)) {
+            return response()->json('Sparepart not found', 404);
+        }
+
+         $detailTransSpare->id_trans_penjualan = $request->id_trans_penjualan;
+         $detailTransSpare->id_sparepart = $request->id_sparepart;
+         $detailTransSpare->jumlah_barang = $request->jumlah_barang;
+
+         $detailTransSpare->total_harga_spare = 
+         $request->jumlah_barang * $sparepart->harga_jual_sparepart;
+
+         $transpenjualan->total_harga_trans = 
+         $transpenjualan->total_harga_trans + $detailTransSpare->total_harga_spare;
+         
+         $success_trans = $transpenjualan->save();
+         $success_detail = $detailTransSpare->save();
+
+        if (!$success_detail && !$success_trans) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
+        }
+        }
+    }
+
+    public function destroyMobile($id)
+    {
+        $detailTransSpare = detail_trans_sparepart::find($id);
+
+        if(is_null($detailTransSpare)) {
+            return response()->json('Detail Transaksi Sparepart Penjualan Not Found', 404);
+        }
+        
+        else {
+
+            $transpenjualan = trans_penjualan::where('id', $detailTransSpare->id_trans_penjualan)->first();
+
+            if(is_null($transpenjualan)) {
+                return response()->json('Transaksi Penjualan not found', 404);
+            }
+
+            $sparepart = sparepart::where('id', $detailTransSpare->id_sparepart)->first();
+
+            if(is_null($sparepart)) {
+                return response()->json('Sparepart not found', 404);
+            }
+
+            $transpenjualan->total_harga_trans = 
+            $transpenjualan->total_harga_trans - $detailTransSpare->total_harga_spare;
+            
+            $success_trans = $transpenjualan->save();
+
+            $success_detail = $detailTransSpare->delete();
+
+            if($success_detail && $success_trans)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
+    }
 }
