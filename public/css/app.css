@@ -11783,7 +11783,7 @@ a.tag:hover {
 
 .card {
   background-color: white;
-  box-shadow: 0 15px 16px rgba(10, 10, 10, 0.1), 0 0 0 3px rgba(10, 10, 10, 0.1);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   color: #4a4a4a;
   max-width: 100%;
   position: relative;
@@ -11792,7 +11792,7 @@ a.tag:hover {
 .card-header {
   background-color: transparent;
   align-items: stretch;
-  box-shadow: 0 4px 5px rgba(10, 10, 10, 0.1);
+  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.1);
   display: flex;
 }
 
@@ -17255,7 +17255,7 @@ label.panel-block:hover {
 
 .footer {
   background-color: #fafafa;
-  padding: 2rem 1.5rem 2rem;
+  padding: 3rem 1.5rem 6rem;
 }
 
 .is-noscroll {

@@ -39,7 +39,7 @@ class transpenjualancontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_plat_kendaraan' => 'required|unique:trans_penjualans,no_plat_kendaraan|max:8',
+            'no_plat_kendaraan' => 'required|unique:trans_penjualan,no_plat_kendaraan|max:8',
             
         ]);
 
