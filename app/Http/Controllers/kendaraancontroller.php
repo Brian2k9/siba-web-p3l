@@ -19,6 +19,13 @@ class kendaraancontroller extends Controller
         return response()->json($kendaraans, 200);
     }
 
+    public function all()
+    {
+        $kendaraans = Kendaraan::all();
+
+        return response()->json($kendaraans, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

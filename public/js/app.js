@@ -2142,6 +2142,358 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      detailTransJasa: {
+        id_trans_penjualan: '',
+        id_jasa: '',
+        id_pegawai: '',
+        id_kendaraan: '',
+        jumlah_jasa: ''
+      },
+      transaksiPenjualan: [],
+      jasa_services: [],
+      pegawais: [],
+      kendaraans: [],
+      message: ''
+    };
+  },
+  mounted: function mounted() {
+    var app = this;
+    app.getTransaksiPenjualan();
+    app.getJasas();
+    app.getPegawais();
+    app.getKendaraans();
+  },
+  methods: {
+    alert: function alert(pesan) {
+      this.$swal({
+        title: "Berhasil Menambah Transaksi Service",
+        text: pesan,
+        icon: "success"
+      });
+    },
+    getTransaksiPenjualan: function getTransaksiPenjualan() {
+      var app = this;
+      axios.get('/api/trans_penjualan' + '/all').then(function (resp) {
+        app.transaksiPenjualan = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getJasas: function getJasas() {
+      var app = this;
+      axios.get('/api/jasa_service' + '/all').then(function (resp) {
+        app.jasa_services = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getPegawais: function getPegawais() {
+      var app = this;
+      axios.get('/api/pegawai' + '/all').then(function (resp) {
+        app.pegawais = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getKendaraans: function getKendaraans() {
+      var app = this;
+      axios.get('/api/kendaraan' + '/all').then(function (resp) {
+        app.kendaraans = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    saveForm: function saveForm() {
+      var _this = this;
+
+      var newDetailTransJasa = this.detailTransJasa;
+      axios.post('/api/detail_trans_jasa/store', newDetailTransJasa).then(function (resp) {
+        _this.alert('Berhasil Menambah Transaksi Service ');
+
+        _this.$router.replace('/detail_trans_jasa');
+      }).catch(function (resp) {
+        if (resp.response.status == 500) alert('Gagal Menambah Transaksi Service');
+        _this.errors = resp.response.data.errors;
+        console.log(resp);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      detail_transjasa: [],
+      detailTransJasaData: {},
+      pencarian: '',
+      loading: true
+    };
+  },
+  mounted: function mounted() {
+    var app = this;
+    app.getResults();
+  },
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.detail_transjasa.filter(function (transaksi) {
+        return transaksi.jasa_service.nama_jasa.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
+    }
+  },
+  methods: {
+    getResults: function getResults(page) {
+      var app = this;
+
+      if (typeof page == 'undefined') {
+        page = 1;
+      }
+
+      axios.get('/api/detail_trans_jasa?page=' + page).then(function (resp) {
+        app.detail_transjasa = resp.data.data;
+        app.detailTransJasaData = resp.data;
+        app.loading = false;
+      }).catch(function (resp) {
+        console.log(resp);
+        app.loading = false;
+      });
+    },
+    deleteEntry: function deleteEntry(id, index, noTransPenjualan) {
+      var _this2 = this;
+
+      axios.delete('/api/detail_trans_jasa/' + id).then(function (resp) {
+        _this2.getResults();
+
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Transaksi Service ");
+      }).catch(function (resp) {
+        alert("Gagal Menghapus Transaksi Service");
+        console.log(resp);
+      });
+    },
+    konfirmasiHapus: function konfirmasiHapus(id, index, noTransPenjualan) {
+      var _this3 = this;
+
+      this.$swal({
+        title: "Yakin Ingin Menghapus Transaksi Service?",
+        text: "Data yang di hapus tidak akan bisa di kembalikan lagi",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          _this3.deleteEntry(id, index, noTransPenjualan);
+        }
+      });
+    },
+    alert: function alert(title, pesan) {
+      this.$swal({
+        title: title,
+        text: pesan,
+        icon: "success"
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/jasa service/AdminJasaService.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/jasa service/AdminJasaService.vue?vue&type=script&lang=js& ***!
@@ -8788,6 +9140,668 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=template&id=18d51db2&":
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=template&id=18d51db2& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("ID Trans Penjualan")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.detailTransJasa.id_trans_penjualan,
+                              expression: "detailTransJasa.id_trans_penjualan"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.detailTransJasa,
+                                "id_trans_penjualan",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Trans Penjualan")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.transaksiPenjualan, function(transaksi) {
+                            return _c(
+                              "option",
+                              { domProps: { value: transaksi.id } },
+                              [_vm._v(_vm._s(transaksi.id))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_trans_penjualan
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(
+                              " " + _vm._s(_vm.errors.id_trans_penjualan[0])
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Jasa Service")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.detailTransJasa.id_jasa,
+                              expression: "detailTransJasa.id_jasa"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.detailTransJasa,
+                                "id_jasa",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Jasa Service")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.jasa_services, function(jasa_service) {
+                            return _c(
+                              "option",
+                              { domProps: { value: jasa_service.id } },
+                              [_vm._v(_vm._s(jasa_service.nama_jasa))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_jasa
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_jasa[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Pegawai")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.detailTransJasa.id_pegawai,
+                              expression: "detailTransJasa.id_pegawai"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.detailTransJasa,
+                                "id_pegawai",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Pegawai")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.pegawais, function(pegawai) {
+                            return _c(
+                              "option",
+                              { domProps: { value: pegawai.id } },
+                              [_vm._v(_vm._s(pegawai.nama_pegawai))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_pegawai
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_pegawai[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Kendaraan")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.detailTransJasa.id_kendaraan,
+                              expression: "detailTransJasa.id_kendaraan"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.detailTransJasa,
+                                "id_kendaraan",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Kendaraan")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.kendaraans, function(kendaraan) {
+                            return _c(
+                              "option",
+                              { domProps: { value: kendaraan.id } },
+                              [_vm._v(_vm._s(kendaraan.tipe_kendaraan))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_kendaraan
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_kendaraan[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Jumlah Jasa")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.detailTransJasa.jumlah_jasa,
+                          expression: "detailTransJasa.jumlah_jasa"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Jumlah Jasa",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.detailTransJasa.jumlah_jasa },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.detailTransJasa,
+                            "jumlah_jasa",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.jumlah_jasa
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.jumlah_jasa[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/detail_trans_jasa" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-header-title" }, [
+        _vm._v("Tambah Transaksi Service")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "button is-success", attrs: { type: "submit" } },
+      [_vm._v("Tambah    "), _c("i", { staticClass: "fas fa-plus-circle" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=template&id=79a66298&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=template&id=79a66298& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-tools" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "button is-success",
+                  attrs: { to: "/tambah_trans_jasa" }
+                },
+                [
+                  _vm._v("Tambah Transaksi Service   "),
+                  _c("i", { staticClass: "fas fa-plus-circle" })
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body table-responsive p-0" },
+            [
+              _c("div", { attrs: { align: "right" } }, [
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pencarian,
+                      expression: "pencarian"
+                    }
+                  ],
+                  staticClass: "input is-rounded",
+                  style: { width: "20%" },
+                  attrs: { type: "text", placeholder: "cari" },
+                  domProps: { value: _vm.pencarian },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.pencarian = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.filteredList, function(transaksi, index) {
+                      return _c("tr", { key: transaksi.id }, [
+                        _c("td", [
+                          _vm._v(_vm._s(transaksi.id_trans_penjualan))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(transaksi.jasa_service.nama_jasa))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(transaksi.pegawai.nama_pegawai))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(transaksi.kendaraan.tipe_kendaraan))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(transaksi.jumlah_jasa))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(transaksi.total_harga_jasa))]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "button is-primary",
+                                attrs: {
+                                  to: {
+                                    name: "editDetailTransJasa",
+                                    params: { id: transaksi.id }
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-edit" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "button is-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.konfirmasiHapus(
+                                      transaksi.id,
+                                      index,
+                                      transaksi.id_trans_penjualan
+                                    )
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-trash" })]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.loading ? _c("vue-simple-spinner") : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-footer" },
+            [
+              _c(
+                "pagination",
+                {
+                  staticClass: "card-footer-item",
+                  attrs: { data: _vm.detailTransJasaData, limit: 4 },
+                  on: { "pagination-change-page": _vm.getResults }
+                },
+                [
+                  _c(
+                    "span",
+                    { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                    [_vm._v("< Previous")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                    [_vm._v("Next >")]
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-header-title" }, [
+        _vm._v("Daftar Transaksi Service")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("Nomor Transaksi Penjualan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Jasa Service")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Pegawai")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Kendaraan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Jumlah Jasa")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Total Harga Jasa")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Modify")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/homeAdmin.vue?vue&type=template&id=f2646116&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/homeAdmin.vue?vue&type=template&id=f2646116& ***!
@@ -10283,7 +11297,7 @@ var render = function() {
                       staticClass: "col-md-2 control-label",
                       attrs: { for: "name" }
                     },
-                    [_vm._v("ID Role")]
+                    [_vm._v("Role")]
                   ),
                   _vm._v(" "),
                   _c("br"),
@@ -10325,14 +11339,14 @@ var render = function() {
                         },
                         [
                           _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Pilih ID Role")
+                            _vm._v("Pilih Role")
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.roles, function(role) {
                             return _c(
                               "option",
                               { domProps: { value: role.id } },
-                              [_vm._v(_vm._s(role.id))]
+                              [_vm._v(_vm._s(role.nama_role))]
                             )
                           })
                         ],
@@ -10613,7 +11627,7 @@ var render = function() {
                       staticClass: "col-md-2 control-label",
                       attrs: { for: "name" }
                     },
-                    [_vm._v("ID Cabang")]
+                    [_vm._v("Cabang")]
                   ),
                   _vm._v(" "),
                   _c("br"),
@@ -10655,14 +11669,14 @@ var render = function() {
                         },
                         [
                           _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Pilih ID Cabang")
+                            _vm._v("Pilih Cabang")
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.cabangs, function(cabang) {
                             return _c(
                               "option",
                               { domProps: { value: cabang.id } },
-                              [_vm._v(_vm._s(cabang.id))]
+                              [_vm._v(_vm._s(cabang.nama_cabang))]
                             )
                           })
                         ],
@@ -10779,7 +11793,7 @@ var render = function() {
                       staticClass: "col-md-2 control-label",
                       attrs: { for: "name" }
                     },
-                    [_vm._v("ID Role")]
+                    [_vm._v("Role")]
                   ),
                   _vm._v(" "),
                   _c("br"),
@@ -10821,14 +11835,14 @@ var render = function() {
                         },
                         [
                           _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Pilih ID Role")
+                            _vm._v("Pilih Role")
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.roles, function(role) {
                             return _c(
                               "option",
                               { domProps: { value: role.id } },
-                              [_vm._v(_vm._s(role.id))]
+                              [_vm._v(_vm._s(role.nama_role))]
                             )
                           })
                         ],
@@ -11109,7 +12123,7 @@ var render = function() {
                       staticClass: "col-md-2 control-label",
                       attrs: { for: "name" }
                     },
-                    [_vm._v("ID Cabang")]
+                    [_vm._v("Cabang")]
                   ),
                   _vm._v(" "),
                   _c("br"),
@@ -11151,14 +12165,14 @@ var render = function() {
                         },
                         [
                           _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Pilih ID Cabang")
+                            _vm._v("Pilih Cabang")
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.cabangs, function(cabang) {
                             return _c(
                               "option",
                               { domProps: { value: cabang.id } },
-                              [_vm._v(_vm._s(cabang.id))]
+                              [_vm._v(_vm._s(cabang.nama_cabang))]
                             )
                           })
                         ],
@@ -12617,7 +13631,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "navbar-item",
-                            attrs: { to: "/detail_jasa" }
+                            attrs: { to: "/detail_trans_jasa" }
                           },
                           [_vm._v("Detail Jasa Service")]
                         )
@@ -12633,7 +13647,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "navbar-item",
-                            attrs: { to: "/detail_sparepart" }
+                            attrs: { to: "/detail_trans_sparepart" }
                           },
                           [_vm._v("Detail Sparepart")]
                         )
@@ -14944,7 +15958,7 @@ var render = function() {
                       staticClass: "col-md-2 control-label",
                       attrs: { for: "name" }
                     },
-                    [_vm._v("ID Pelanggan")]
+                    [_vm._v("Pelanggan")]
                   ),
                   _vm._v(" "),
                   _c("br"),
@@ -14986,14 +16000,14 @@ var render = function() {
                         },
                         [
                           _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Pilih ID Pelanggan")
+                            _vm._v("Pilih Pelanggan")
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.pelanggans, function(pelanggan) {
                             return _c(
                               "option",
                               { domProps: { value: pelanggan.id } },
-                              [_vm._v(_vm._s(pelanggan.id))]
+                              [_vm._v(_vm._s(pelanggan.nama_pelanggan))]
                             )
                           })
                         ],
@@ -15016,7 +16030,7 @@ var render = function() {
                       staticClass: "col-md-2 control-label",
                       attrs: { for: "name" }
                     },
-                    [_vm._v("ID Cabang")]
+                    [_vm._v("Cabang")]
                   ),
                   _vm._v(" "),
                   _c("br"),
@@ -15058,14 +16072,14 @@ var render = function() {
                         },
                         [
                           _c("option", { attrs: { value: "" } }, [
-                            _vm._v("Pilih ID Cabang")
+                            _vm._v("Pilih Cabang")
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.cabangs, function(cabang) {
                             return _c(
                               "option",
                               { domProps: { value: cabang.id } },
-                              [_vm._v(_vm._s(cabang.id))]
+                              [_vm._v(_vm._s(cabang.nama_cabang))]
                             )
                           })
                         ],
@@ -31824,6 +32838,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateDetailTransJasa_vue_vue_type_template_id_18d51db2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateDetailTransJasa.vue?vue&type=template&id=18d51db2& */ "./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=template&id=18d51db2&");
+/* harmony import */ var _CreateDetailTransJasa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateDetailTransJasa.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateDetailTransJasa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateDetailTransJasa_vue_vue_type_template_id_18d51db2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateDetailTransJasa_vue_vue_type_template_id_18d51db2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetailTransJasa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateDetailTransJasa.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetailTransJasa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=template&id=18d51db2&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=template&id=18d51db2& ***!
+  \****************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetailTransJasa_vue_vue_type_template_id_18d51db2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateDetailTransJasa.vue?vue&type=template&id=18d51db2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue?vue&type=template&id=18d51db2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetailTransJasa_vue_vue_type_template_id_18d51db2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateDetailTransJasa_vue_vue_type_template_id_18d51db2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _detailTransJasaIndex_vue_vue_type_template_id_79a66298___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detailTransJasaIndex.vue?vue&type=template&id=79a66298& */ "./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=template&id=79a66298&");
+/* harmony import */ var _detailTransJasaIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detailTransJasaIndex.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _detailTransJasaIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _detailTransJasaIndex_vue_vue_type_template_id_79a66298___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _detailTransJasaIndex_vue_vue_type_template_id_79a66298___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detailTransJasaIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detailTransJasaIndex.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detailTransJasaIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=template&id=79a66298&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=template&id=79a66298& ***!
+  \***************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailTransJasaIndex_vue_vue_type_template_id_79a66298___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detailTransJasaIndex.vue?vue&type=template&id=79a66298& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=template&id=79a66298&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailTransJasaIndex_vue_vue_type_template_id_79a66298___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailTransJasaIndex_vue_vue_type_template_id_79a66298___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/homeAdmin.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/admin/homeAdmin.vue ***!
@@ -33660,9 +34812,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_kendaraan_EditKendaraan_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../components/admin/kendaraan/EditKendaraan.vue */ "./resources/js/components/admin/kendaraan/EditKendaraan.vue");
 /* harmony import */ var _components_admin_transaksiPenjualan_transPenjualanIndex_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../components/admin/transaksiPenjualan/transPenjualanIndex.vue */ "./resources/js/components/admin/transaksiPenjualan/transPenjualanIndex.vue");
 /* harmony import */ var _components_admin_transaksiPenjualan_CreateTransaksiPenjualan_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue */ "./resources/js/components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue");
+/* harmony import */ var _components_admin_detailTransJasa_detailTransJasaIndex_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../components/admin/detailTransJasa/detailTransJasaIndex.vue */ "./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue");
+/* harmony import */ var _components_admin_detailTransJasa_CreateDetailTransJasa_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../components/admin/detailTransJasa/CreateDetailTransJasa.vue */ "./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
 
 
 
@@ -33783,6 +34939,12 @@ var routes = [{
   }, {
     path: '/tambah_trans_penjualan',
     component: _components_admin_transaksiPenjualan_CreateTransaksiPenjualan_vue__WEBPACK_IMPORTED_MODULE_29__["default"]
+  }, {
+    path: '/detail_trans_jasa',
+    component: _components_admin_detailTransJasa_detailTransJasaIndex_vue__WEBPACK_IMPORTED_MODULE_30__["default"]
+  }, {
+    path: '/tambah_trans_jasa',
+    component: _components_admin_detailTransJasa_CreateDetailTransJasa_vue__WEBPACK_IMPORTED_MODULE_31__["default"]
   }]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -33811,8 +34973,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\siba-web-p3l\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\siba-web-p3l\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -20,6 +20,13 @@ class transpenjualancontroller extends Controller
         return response()->json($transpenjualans, 200);
     }
 
+    public function all()
+    {
+        $transpenjualans = trans_penjualan::all();
+
+        return response()->json($transpenjualans, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

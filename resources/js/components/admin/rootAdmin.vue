@@ -57,10 +57,10 @@
       
       <div class="navbar-dropdown">
           <a class="navbar-item">
-            <router-link to= "/detail_jasa"  class="navbar-item">Detail Jasa Service</router-link>
+            <router-link to= "/detail_trans_jasa"  class="navbar-item">Detail Jasa Service</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/detail_sparepart"  class="navbar-item">Detail Sparepart</router-link>
+            <router-link to= "/detail_trans_sparepart"  class="navbar-item">Detail Sparepart</router-link>
           </a>
           <a class="navbar-item">
             <router-link to= "/trans_penjualan"  class="navbar-item">Transaksi Penjualan</router-link>

@@ -19,6 +19,13 @@ class pegawaicontroller extends Controller
         return response()->json($pegawais, 200);
     }
 
+    public function all()
+    {
+        $pegawais = Pegawai::all();
+
+        return response()->json($pegawais, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

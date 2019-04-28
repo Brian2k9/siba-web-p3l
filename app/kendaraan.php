@@ -11,4 +11,9 @@ class kendaraan extends Model
     public $timestamps = true;
     protected $fillable = ['merk_kendaraan',
                             'tipe_kendaraan'];
+
+
+    public function detailTransJasa(){
+        return $this->hasMany(detail_trans_jasa::class);
+    }
 }

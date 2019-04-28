@@ -19,6 +19,13 @@ class jasaservicecontroller extends Controller
         return response()->json($jasas, 200);
     }
 
+    public function all()
+    {
+        $jasas = jasa_service::all();
+
+        return response()->json($jasas, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

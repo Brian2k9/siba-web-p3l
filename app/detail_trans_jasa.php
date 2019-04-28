@@ -15,4 +15,18 @@ class detail_trans_jasa extends Model
                             'id_kendaraan',
                             'jumlah_jasa',
                             'total_harga_jasa'];
+
+    public function trans_penjualan(){
+        return $this->belongsTo(trans_penjualan::class, 'id_trans_penjualan');
+    }
+                                                
+    public function jasa(){
+        return $this->belongsTo(jasa_service::class, 'id_jasa');
+    }
+    public function pegawai(){
+        return $this->belongsTo(Pegawai::class, 'id_pegawai');
+    }
+    public function kendaraan(){
+        return $this->belongsTo(Kendaraan::class, 'id_kendaraan');
+    }
 }

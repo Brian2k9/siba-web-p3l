@@ -41,6 +41,9 @@ import EditKendaraan from '../components/admin/kendaraan/EditKendaraan.vue'
 import transPenjualanIndex from '../components/admin/transaksiPenjualan/transPenjualanIndex.vue'
 import CreateTransaksiPenjualan from '../components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue'
 
+import detailTransJasaIndex from '../components/admin/detailTransJasa/detailTransJasaIndex.vue'
+import CreateDetailTransJasa from '../components/admin/detailTransJasa/CreateDetailTransJasa.vue'
+
 
 
 const routes = [
@@ -172,6 +175,15 @@ const routes = [
             {
                 path:'/tambah_trans_penjualan',
                 component: CreateTransaksiPenjualan
+            },
+
+            {
+                path:'/detail_trans_jasa',
+                component: detailTransJasaIndex
+            },
+            {
+                path:'/tambah_trans_jasa',
+                component: CreateDetailTransJasa
             },
             
            

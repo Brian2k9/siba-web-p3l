@@ -12,7 +12,7 @@
                   
                     <form v-on:submit.prevent="saveForm()" class="form-horizontal" >
                       <div class="form-group">
-                        <label for="name" class="col-md-2 control-label" >ID Pelanggan</label>
+                        <label for="name" class="col-md-2 control-label" >Pelanggan</label>
                         <br>
                         <div class="select is-primary">
                         <div class="col-md-4">
@@ -20,15 +20,15 @@
                           v-model="transaksiPenjualan.id_pelanggan"
                           class="form-control"
                           required="" >
-                            <option value="">Pilih ID Pelanggan</option>
-                            <option v-for="pelanggan in pelanggans" :value="pelanggan.id">{{ pelanggan.id }}</option>
+                            <option value="">Pilih Pelanggan</option>
+                            <option v-for="pelanggan in pelanggans" :value="pelanggan.id">{{ pelanggan.nama_pelanggan }}</option>
                           </select>
                         <span v-if="errors.id_pelanggan" class="help is-danger"> {{ errors.id_pelanggan[0]}}</span>
                         </div>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="name" class="col-md-2 control-label" >ID Cabang</label>
+                        <label for="name" class="col-md-2 control-label" >Cabang</label>
                         <br>
                         <div class="select is-primary">
                         <div class="col-md-4">
@@ -36,8 +36,8 @@
                           v-model="transaksiPenjualan.id_cabang"
                           class="form-control"
                           required="" >
-                            <option value="">Pilih ID Cabang</option>
-                            <option v-for="cabang in cabangs" :value="cabang.id">{{ cabang.id }}</option>
+                            <option value="">Pilih Cabang</option>
+                            <option v-for="cabang in cabangs" :value="cabang.id">{{ cabang.nama_cabang }}</option>
                           </select>
                         <span v-if="errors.id_cabang" class="help is-danger"> {{ errors.id_cabang[0]}}</span>
                         </div>

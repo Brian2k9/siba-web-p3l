@@ -11,4 +11,8 @@ class jasa_service extends Model
     public $timestamps = true;
     protected $fillable = ['nama_jasa',
                             'harga_jasa'];
+
+    public function detailTransJasa(){
+        return $this->hasMany(detail_trans_jasa::class);
+    }
 }

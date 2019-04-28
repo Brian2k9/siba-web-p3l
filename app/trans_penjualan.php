@@ -26,4 +26,8 @@ class trans_penjualan extends Model
     public function pelanggan(){
         return $this->belongsTo(Pelanggan::class, 'id_pelanggan');
     }
+    public function detailTransJasa(){
+        return $this->hasMany(detail_trans_jasa::class);
+    }
+
 }

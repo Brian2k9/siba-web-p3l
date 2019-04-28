@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //////////////////////////////////////////////////////////////////////////////////Kelola Data
 Route::get('/jasa_service','jasaservicecontroller@index');
+Route::get('/jasa_service/all','jasaservicecontroller@all');
 Route::get('/jasa_service/{id}','jasaservicecontroller@show');
 Route::get('/jasa_service/search','jasaservicecontroller@search');
 Route::post('/jasa_service/store','jasaservicecontroller@store');
@@ -42,6 +43,7 @@ Route::delete('/role/{id}','rolecontroller@destroy');
 
 
 Route::get('/pegawai','pegawaicontroller@index');
+Route::get('/pegawai/all','pegawaicontroller@all');
 Route::get('/pegawai/{id}','pegawaicontroller@show');
 Route::get('/pegawai/showByName/{nama_pegawai}','pegawaicontroller@showByName');
 Route::post('/pegawai/store','pegawaicontroller@store');
@@ -94,6 +96,7 @@ Route::delete('/pelanggan/{id}','pelanggancontroller@destroy');
 
 
 Route::get('/kendaraan','kendaraancontroller@index');
+Route::get('/kendaraan/all','kendaraancontroller@all');
 Route::get('/kendaraan/{id}','kendaraancontroller@show');
 Route::get('/kendaraan/showByMerk/{merk_kendaraan}','kendaraancontroller@showByMerk');
 Route::post('kendaraan/store','kendaraancontroller@store');
@@ -106,6 +109,7 @@ Route::get('/kendaraan/mobile','kendaraancontroller@indexMobile');
 
 //////////////////////////////////////////////////////////////////////////////////Trans Penjualan
 Route::get('/trans_penjualan', 'transpenjualancontroller@index');
+Route::get('/trans_penjualan/all','transpenjualancontroller@all');
 Route::post('trans_penjualan/store','transpenjualancontroller@store');
 Route::delete('/trans_penjualan/{id}','transpenjualancontroller@destroy');
 
@@ -114,6 +118,11 @@ Route::post('/trans_penjualan/mobile/store','transpenjualancontroller@storeMobil
 Route::delete('/trans_penjualan/mobile/delete/{id}','transpenjualancontroller@destroyMobile');
 
 //////////////////////////////////////////////////////////////////////////////////DETAIL TRANS PENJUALAN
+Route::get('/detail_trans_jasa', 'detailTransPenjualanJasaController@index');
+Route::post('detail_trans_jasa/store','detailTransPenjualanJasaController@store');
+Route::put('/detail_trans_jasa/update/{id}','detailTransPenjualanJasaController@update');
+Route::delete('/detail_trans_jasa/{id}','detailTransPenjualanJasaController@destroy');
+
 Route::get('/trans_penjualan/detail_jasa/mobile', 'detailTransPenjualanJasaController@indexMobile');
 Route::post('/trans_penjualan/detail_jasa/mobile/store', 'detailTransPenjualanJasaController@storeMobile');
 Route::delete('/trans_penjualan/detail_jasa/mobile/delete/{id}', 'detailTransPenjualanJasaController@destroyMobile');
