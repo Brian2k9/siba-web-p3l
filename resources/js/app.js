@@ -6,6 +6,7 @@ import AppLayout from './components/appLayout.vue'
 import router from './router/routes'
 import axios from 'axios'
 import VueSwal from 'vue-swal';
+import VueHtmlToPaper from 'vue-html-to-paper';
 
 window.axios = axios.create()
 
@@ -13,6 +14,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('vue-spinner', require('vue-simple-spinner'));
 
 Vue.use(VueSwal)
+Vue.use(VueHtmlToPaper);
 
 
 const app = new Vue({

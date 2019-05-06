@@ -13,7 +13,7 @@ class kendaraan extends Model
                             'tipe_kendaraan'];
 
 
-    public function detailTransJasa(){
+    public function detail_trans_jasa(){
         return $this->hasMany(detail_trans_jasa::class);
     }
 }

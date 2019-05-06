@@ -5,7 +5,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                  <div class="card-header">
-                    <h3 class="card-header-title">Tambah Transaksi Service</h3>
+                    <h3 class="card-header-title">Ubah Transaksi Service</h3>
                   </div>
 
                 <div class="card-body">
@@ -86,7 +86,7 @@
                       <br>
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
-                          <button class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
+                          <button class="button is-success" type="submit">Ubah  &nbsp; <i class="fa fa-edit"></i></button>
                           <router-link to = "/detail_trans_jasa" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
                         </div>
                       </div>
@@ -116,12 +116,22 @@
         jasa_services: [],
         pegawais: [],
         kendaraans: [],
+        transJasaId : null,
         errors: [],
         message: ''
       }
     },
     mounted()  {
      var app = this;
+     this.transJasaId = this.$route.params.id;
+     axios.get('/api/trans_penjualan/detail_jasa/'+this.transJasaId)
+     .then((resp) => {
+       this.detail_trans_jasa =  resp.data;
+     })
+     .catch((resp) => {
+        alert("Gagal memuat transaksi service");    
+     });
+     
      app.getTransaksiPenjualan();
      app.getJasas();
      app.getPegawais();
@@ -130,7 +140,7 @@
     methods: {
       alert(pesan){
         this.$swal({
-          title: "Berhasil Menambah Transaksi Service",
+          title: "Berhasil Mengubah Transaksi Service",
           text: pesan,
           icon: "success"
         });
@@ -177,13 +187,13 @@
       },
       saveForm(){
         var newDetailTransJasa = this.detail_trans_jasa;
-        axios.post('/api/trans_penjualan/detail_jasa/store',newDetailTransJasa)
+        axios.put('/api/trans_penjualan/detail_jasa/update/' + this.transJasaId ,newDetailTransJasa)
         .then((resp) => {
-          this.alert('Berhasil Menambah Transaksi Service ');
+          this.alert('Berhasil Mengubah Transaksi Service ');
           this.$router.replace('/detail_trans_jasa');
         })
         .catch((resp) =>{
-          if(resp.response.status == 500) alert('Gagal Menambah Transaksi Service');
+          if(resp.response.status == 500) alert('Gagal Mengubah Transaksi Service');
           this.errors = resp.response.data.errors;
           console.log(resp);
         });

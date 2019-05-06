@@ -53,7 +53,7 @@
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Tanggal Penjualan</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Tanggal Penjualan" v-model="transaksiPenjualan.tanggal_penjualan" @input="onlyNumbers" autofocus=""/>
+                          <input type="date" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="" v-model="transaksiPenjualan.tanggal_penjualan" autofocus=""/>
                         <span v-if="errors.tanggal_penjualan" class="help is-danger"> {{ errors.tanggal_penjualan[0]}}</span>
                         </div>
                       </div>
@@ -84,7 +84,7 @@
             id_pelanggan: '',
             id_cabang: '',
             no_plat_kendaraan: '',
-            tanggal_penjualan: '',
+            tanggal_penjualan: '2019-02-04',
         },
         pelanggans: [],
         cabangs: [],
@@ -138,9 +138,9 @@
           console.log(resp);
         });
       },
-      onlyNumbers: function() {
-       this.transaksiPenjualan.tanggal_penjualan = this.transaksiPenjualan.tanggal_penjualan.replace(/[^0-9-]/g,'');
-      }
+      // onlyNumbers: function() {
+      //  this.transaksiPenjualan.tanggal_penjualan = this.transaksiPenjualan.tanggal_penjualan.replace(/[^0-9-]/g,'');
+      // }
     }
   }
 

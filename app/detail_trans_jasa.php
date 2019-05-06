@@ -20,7 +20,7 @@ class detail_trans_jasa extends Model
         return $this->belongsTo(trans_penjualan::class, 'id_trans_penjualan');
     }
                                                 
-    public function jasa(){
+    public function jasa_service(){
         return $this->belongsTo(jasa_service::class, 'id_jasa');
     }
     public function pegawai(){

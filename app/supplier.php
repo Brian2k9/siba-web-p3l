@@ -13,4 +13,8 @@ class supplier extends Model
                             'sales_supplier',
                             'no_telp_supplier',
                             'alamat_supplier'];
+
+    public function trans_pengadaan(){
+        return $this->hasMany(trans_pengadaan::class);
+    }
 }

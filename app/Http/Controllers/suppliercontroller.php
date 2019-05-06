@@ -19,6 +19,13 @@ class suppliercontroller extends Controller
         return response()->json($suppliers, 200);
     }
 
+    public function all()
+    {
+        $suppliers = Supplier::all();
+
+        return response()->json($suppliers, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -159,5 +166,48 @@ class suppliercontroller extends Controller
     {
         $suppliers = Supplier::all();
         return response()->json($suppliers, 200);
+    }
+
+    public function storeMobile(Request $request)
+    {
+        //post
+        $supplier = new supplier;
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->sales_supplier = $request->sales_supplier;
+        $supplier->no_telp_supplier = $request->no_telp_supplier;
+        $supplier->alamat_supplier = $request->alamat_supplier;
+
+        $success = $supplier->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
+        }
+    }
+
+    public function updateMobile(Request $request, $id)
+    {
+        $supplier = Supplier::where('id', $id)->first();
+
+        if (is_null($supplier)) {
+            return response()->json('Supplier not found', 404);
+        }
+
+        else {
+            $supplier->nama_supplier = $request->nama_supplier;
+            $supplier->sales_supplier = $request->sales_supplier;
+            $supplier->no_telp_supplier = $request->no_telp_supplier;
+            $supplier->alamat_supplier = $request->alamat_supplier;
+
+
+            $success = $supplier->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 204);
+            }
+        }
     }
 }

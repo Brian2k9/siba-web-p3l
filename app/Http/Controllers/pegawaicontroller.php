@@ -178,6 +178,7 @@ class pegawaicontroller extends Controller
         $pegawais = Pegawai::all();
         return response()->json($pegawais, 200);
     }
+    
     public function login(Request $request) {
         $no_telp = $request->no_telp_pegawai;
         $password = $request->password_pegawai;

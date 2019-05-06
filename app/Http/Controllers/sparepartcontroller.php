@@ -19,6 +19,13 @@ class sparepartcontroller extends Controller
         return response()->json($spareparts, 200);
     }
 
+    public function all()
+    {
+        $spareparts = Sparepart::all();
+
+        return response()->json($spareparts, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -262,7 +269,7 @@ class sparepartcontroller extends Controller
 
     private $photo_path;
     public function __construct() {
-        $this->photo_path = 'http://192.168.1.23:8000/images/sparepart/';
+        $this->photo_path = 'http://192.168.1.27:8000/images/sparepart/';
     }
 
     public function indexMobile()
@@ -292,6 +299,7 @@ class sparepartcontroller extends Controller
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->merk_sparepart = $request->merk_sparepart;  
         $sparepart->tipe_sparepart = $request->tipe_sparepart;
+        // $sparepart->gambar_sparepart = $request->gambar_sparepart;
         $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
         $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
         $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
@@ -299,7 +307,6 @@ class sparepartcontroller extends Controller
         
         if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
             $dir = 'images/sparepart/';
-            // $path = 'http://10.53.10.70:8000/images/sparepart/'; //sesuai path yang dipake
             $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
             $fileName = str_random() . '.' . $extension;
             $file = $this->photo_path . $fileName;
@@ -314,6 +321,7 @@ class sparepartcontroller extends Controller
             return response()->json('Success', 204);
         }
     }
+
     public function updateMobile(Request $request, $id)
     {
         $sparepart = Sparepart::where('id', $id)->first();
@@ -345,6 +353,41 @@ class sparepartcontroller extends Controller
             else {
                 return response()->json('Success Updating', 204);
             }
+        }
+    }
+
+    public function updateMobileNonImage(Request $request, $id)
+    {
+        $sparepart = Sparepart::where('id', $id)->first();
+        if (is_null($sparepart)) {
+            return response()->json('Sparepart not found', 404);
+        }
+        $sparepart->kode_sparepart = $request->kode_sparepart;
+        $sparepart->nama_sparepart = $request->nama_sparepart;
+        $sparepart->merk_sparepart = $request->merk_sparepart;
+        $sparepart->tipe_sparepart = $request->tipe_sparepart;
+        $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
+        $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
+        $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
+        $sparepart->jumlah_minimal = $request->jumlah_minimal;
+            
+        $success = $sparepart->save();
+        if (!$success) {
+            return response()->json('Error Updating', 500);
+        } 
+        else {
+            return response()->json('Success Updating', 204);
+        }
+    }
+
+    public function cekJumlahStok() {
+        $results = Sparepart::whereColumn('jumlah_stok_sparepart', '<=', 'jumlah_minimal')->get();
+
+        if(is_null($results)) {
+            return response()->json('Not found', 404);
+        }
+        else {
+            return response()->json($results, 200);
         }
     }
 }

@@ -21,6 +21,10 @@ class cabang extends Model
     public function trans_penjualan(){
         return $this->hasMany(trans_penjualan::class);
     }   
+
+    public function trans_pengadaan(){
+        return $this->hasMany(trans_pengadaan::class);
+    }
 }
 
 

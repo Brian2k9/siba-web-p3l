@@ -21,7 +21,7 @@
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Harga Jasa</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Harga Jasa" v-model="jasa.harga_jasa" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Harga Jasa" v-model="jasa.harga_jasa" @input="onlyNumbers" autofocus=""/>
                         <span v-if="errors.harga_jasa" class="help is-danger"> {{ errors.harga_jasa[0]}}</span>
                         </div>
                       </div>
@@ -88,6 +88,9 @@
           this.errors = resp.response.data.errors;
           console.log(resp);
         });
+      },
+      onlyNumbers: function() {
+       this.jasa.harga_jasa = this.jasa.harga_jasa.replace(/[^0-9]/g,'');
       }
     }
   }

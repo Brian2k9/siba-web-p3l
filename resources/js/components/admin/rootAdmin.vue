@@ -69,9 +69,18 @@
     </div>
       
 
-      <a class="navbar-item">
-        <i class="fas fa-clipboard-list"></i> &nbsp; Pemesanan
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+        <i class="fas fa-money-check-alt"></i> &nbsp; Pemesanan
       </a>
+      
+      <div class="navbar-dropdown">
+          <a class="navbar-item">
+            <router-link to= "/trans_pengadaan"  class="navbar-item">Transaksi Pengadaan</router-link>
+          </a>
+         
+      </div>
+    </div>
 
       
         <a class="navbar-item">

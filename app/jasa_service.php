@@ -12,7 +12,7 @@ class jasa_service extends Model
     protected $fillable = ['nama_jasa',
                             'harga_jasa'];
 
-    public function detailTransJasa(){
+    public function detail_trans_jasa(){
         return $this->hasMany(detail_trans_jasa::class);
     }
 }

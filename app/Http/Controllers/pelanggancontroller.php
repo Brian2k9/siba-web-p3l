@@ -166,4 +166,22 @@ class pelanggancontroller extends Controller
             }
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////////MOBILE
+    public function indexMobile() {
+        $pelanggan = Pelanggan::all();
+        return response()->json($pelanggan, 202);
+    }
+
+    public function login(Request $request) {
+        $pelanggan = Pelanggan::where('no_telp_pelanggan', $request->no_telp_pelanggan)->first();
+
+        if(is_null($pelanggan)) {
+            return response()->json('Pelanggan Not Found', 404);
+        }
+
+        else {
+            return response()->json($pelanggan, 200);
+        }
+    }
 }

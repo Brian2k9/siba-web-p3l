@@ -14,7 +14,7 @@
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama service" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -72,7 +72,7 @@
   export default {
     data: function() {
       return {
-        detail_transjasa: [],
+        detailTransJasa: [],
         detailTransJasaData: {},
         pencarian: '',
         loading: true
@@ -84,7 +84,7 @@
     },
     computed: {
        filteredList: function(){
-         return this.detail_transjasa.filter((transaksi) => {
+         return this.detailTransJasa.filter((transaksi) => {
            return transaksi.jasa_service.nama_jasa.toLowerCase().match(this.pencarian.toLowerCase());
          });
        }
@@ -95,9 +95,9 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/detail_trans_jasa?page=' + page)
+        axios.get('/api/trans_penjualan/detail_jasa?page=' + page)
         .then(function(resp){
-          app.detail_transjasa = resp.data.data;
+          app.detailTransJasa = resp.data.data;
           app.detailTransJasaData = resp.data;
           app.loading = false;
         })
@@ -109,7 +109,7 @@
       },
       
       deleteEntry(id,index,noTransPenjualan){
-          axios.delete('/api/detail_trans_jasa/' + id)
+          axios.delete('/api/trans_penjualan/detail_jasa/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi Service ");

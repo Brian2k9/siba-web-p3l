@@ -44,6 +44,12 @@ class kendaraancontroller extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'tipe_kendaraan' => 'required|unique:kendaraans,tipe_kendaraan|max:255',
+            
+        ]);
+
         $kendaraan = new kendaraan;
         $kendaraan->merk_kendaraan = $request->merk_kendaraan;
         $kendaraan->tipe_kendaraan = $request->tipe_kendaraan;
@@ -106,6 +112,10 @@ class kendaraancontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'tipe_kendaraan' => 'required|unique:kendaraans,tipe_kendaraan,'.$id.'|max:255',
+            ]);
+
         $kendaraan = Kendaraan::where('id', $id)->first();
 
         if (is_null($kendaraan)) {

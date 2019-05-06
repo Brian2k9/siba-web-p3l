@@ -54,7 +54,7 @@
 
                         <label for="name" class="col-md-2 control-label" >Jumlah Stok Sparepart</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Jumlah Stok Sparepart" v-model="sparepart.jumlah_stok_sparepart" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Jumlah Stok Sparepart" v-model="sparepart.jumlah_stok_sparepart" @input="onlyNumbers" autofocus=""/>
                         <span v-if="errors.jumlah_stok_sparepart" class="help is-danger"> {{ errors.jumlah_stok_sparepart[0]}}</span>
                         </div>
                       </div>
@@ -62,19 +62,19 @@
                       <div class="form-group">
                        <label for="name" class="col-md-2 control-label" >Harga Beli Sparepart</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Harga Beli Sparepart" v-model="sparepart.harga_beli_sparepart" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Harga Beli Sparepart" v-model="sparepart.harga_beli_sparepart" @input="onlyNumbers" autofocus=""/>
                         <span v-if="errors.harga_beli_sparepart" class="help is-danger"> {{ errors.harga_beli_sparepart[0]}}</span>
                         </div>
 
                         <label for="name" class="col-md-2 control-label" >Harga Jual Sparepart</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Harga Jual Sparepart" v-model="sparepart.harga_jual_sparepart" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Harga Jual Sparepart" v-model="sparepart.harga_jual_sparepart" @input="onlyNumbers" autofocus=""/>
                         <span v-if="errors.harga_jual_sparepart" class="help is-danger"> {{ errors.harga_jual_sparepart[0]}}</span>
                         </div>
 
                         <label for="name" class="col-md-2 control-label" >Jumlah Minimal</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Jumlah Minimal" v-model="sparepart.jumlah_minimal" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Jumlah Minimal" v-model="sparepart.jumlah_minimal" @input="onlyNumbers" autofocus=""/>
                         <span v-if="errors.jumlah_minimal" class="help is-danger"> {{ errors.jumlah_minimal[0]}}</span>
                         </div>
                       </div>
@@ -166,6 +166,12 @@
         };
         reader.readAsDataURL(files);
       },
+      onlyNumbers: function() {
+       this.sparepart.jumlah_stok_sparepart = this.sparepart.jumlah_stok_sparepart.replace(/[^0-9]/g,'');
+       this.sparepart.harga_beli_sparepart = this.sparepart.harga_beli_sparepart.replace(/[^0-9]/g,'');
+       this.sparepart.harga_jual_sparepart = this.sparepart.harga_jual_sparepart.replace(/[^0-9]/g,'');
+       this.sparepart.jumlah_minimal = this.sparepart.jumlah_minimal.replace(/[^0-9]/g,'');
+      }
     }
   }
 

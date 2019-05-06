@@ -4,60 +4,45 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi</h3>
+                    <h3 class="card-header-title">Daftar Transaksi Sparepart</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_penjualan" class="button is-success">Tambah Transaksi &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_trans_sparepart" class="button is-success">Tambah Transaksi Sparepart &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan plat" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama sparepart" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
-                        <th>Pelanggan</th>
-                        <th>Cabang</th>
-                        <th>Total Harga Transaksi</th>
-                        <th>Diskon Penjualan</th>
-                        <th>Grand Total</th>
-                        <th>Status Transaksi</th>
-                        <th>Status Pembayaran</th>
-                        <th>Nomor Plat</th>
-                        <th>Tanggal</th>
+                        <th>Nomor Transaksi Penjualan</th>
+                        <th>Sparepart</th>
+                        <th>Jumlah Sparepart</th>
+                        <th>Total Harga Sparepart</th>
                         <th>Modify</th>
                         
                     </thead>
                     <tbody>
-                      <tr v-for="(transaksi,index) in filteredList" :key ="transaksi.id">
-                        <td>{{ transaksi.pelanggan.nama_pelanggan }}</td>
-                        <td>{{ transaksi.cabang.nama_cabang }}</td>
-                        <td>{{ transaksi.total_harga_trans }}</td>
-                        <td>{{ transaksi.discount_penjualan }}</td>
-                        <td>{{ transaksi.grand_total }}</td>
-                        <td>{{ transaksi.status_transaksi }}</td>
-                        <td>{{ transaksi.status_pembayaran }}</td>
-                        <td>{{ transaksi.no_plat_kendaraan }}</td>
-                        <td>{{ transaksi.tanggal_penjualan }}</td>
+                      <tr v-for="(detail_trans_sparepart,index) in filteredList" :key ="detail_trans_sparepart.id">
+                        <td>{{ detail_trans_sparepart.id_trans_penjualan }}</td>
+                        <td>{{ detail_trans_sparepart.sparepart.kode_sparepart }}</td>
+                        <td>{{ detail_trans_sparepart.jumlah_barang }}</td>
+                        <td>{{ detail_trans_sparepart.total_harga_spare }}</td>
                         <td>
                         <router-link 
-                          :to="{name:'editTransaksi' ,params:{id: transaksi.id}}" 
+                          :to="{name:'editTransaksiSparepart' ,params:{id: detail_trans_sparepart.id}}" 
                           class="button is-primary">
                           <i class="fa fa-edit"></i>
                        </router-link>
                         <button 
                           class="button is-danger" 
-                          v-on:click="konfirmasiHapus(transaksi.id,index,transaksi.no_plat_kendaraan)">
+                          v-on:click="konfirmasiHapus(detail_trans_sparepart.id,index)">
                           <i class="fa fa-trash"></i>
                         </button>
-                        <router-link 
-                          :to="{name:'printSPK' ,params:{id: transaksi.id}}" 
-                          class="button is-info">
-                          <i class="fas fa-print"></i>
-                       </router-link>
                         </td>
                       </tr>
                     </tbody>
@@ -66,7 +51,7 @@
                    </div>     
                     <div class="card-footer">
                       <pagination class="card-footer-item"
-                        :data="transaksiPenjualanData" @pagination-change-page="getResults" :limit="4">
+                        :data="detail_transsparepartData" @pagination-change-page="getResults" :limit="4">
                         <span slot="prev-nav">&lt; Previous</span>
 	                      <span slot="next-nav">Next &gt;</span>
                       </pagination>
@@ -83,8 +68,8 @@
   export default {
     data: function() {
       return {
-        transaksiPenjualan: [],
-        transaksiPenjualanData: {},
+        detail_transsparepart: [],
+        detail_transsparepartData: {},
         pencarian: '',
         loading: true
       }
@@ -95,8 +80,8 @@
     },
     computed: {
        filteredList: function(){
-         return this.transaksiPenjualan.filter((transaksi) => {
-           return transaksi.no_plat_kendaraan.toLowerCase().match(this.pencarian.toLowerCase());
+         return this.detail_transsparepart.filter((detail_trans_sparepart) => {
+           return detail_trans_sparepart.sparepart.kode_sparepart.toLowerCase().match(this.pencarian.toLowerCase());
          });
        }
     },
@@ -106,10 +91,10 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/trans_penjualan?page=' + page)
+        axios.get('/api/trans_penjualan/detail_spare?page=' + page)
         .then(function(resp){
-          app.transaksiPenjualan = resp.data.data;
-          app.transaksiPenjualanData = resp.data;
+          app.detail_transsparepart = resp.data.data;
+          app.detail_transsparepartData = resp.data;
           app.loading = false;
         })
         .catch(function(resp){
@@ -119,21 +104,21 @@
         })
       },
       
-      deleteEntry(id,index,nomorPlat){
-          axios.delete('/api/trans_penjualan/' + id)
+      deleteEntry(id,index){
+          axios.delete('/api/trans_penjualan/detail_spare/' + id)
           .then((resp) => {
             this.getResults();
-            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi " + nomorPlat);
+            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi ");
           })
           .catch((resp) =>{
             alert("Gagal Menghapus Transaksi")
             console.log(resp);
           })
       },
-      konfirmasiHapus(id,index,nomorPlat){
+      konfirmasiHapus(id,index){
       
         this.$swal({
-          title: "Yakin Ingin Menghapus Transaksi " + nomorPlat + "?",
+          title: "Yakin Ingin Menghapus Transaksi ?",
           text: "Data yang di hapus tidak akan bisa di kembalikan lagi",
           icon: "warning",
           buttons: true,
@@ -141,7 +126,7 @@
         })
         .then((willDelete) => {
           if (willDelete) {
-            this.deleteEntry(id,index,nomorPlat);
+            this.deleteEntry(id,index);
           }
         })  
       },

@@ -12,4 +12,12 @@ class detail_trans_pengadaan extends Model
     protected $fillable = ['id_trans_pengadaan',
                             'id_sparepart',
                             'jumlah_pengadaan'];
+
+    public function trans_pengadaan(){
+        return $this->belongsTo(trans_pengadaan::class, 'id_trans_pengadaan');
+    }
+                                                                        
+    public function sparepart(){
+        return $this->belongsTo(sparepart::class, 'id_sparepart');
+    }
 }

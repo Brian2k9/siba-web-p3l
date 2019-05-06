@@ -4,60 +4,45 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi</h3>
+                    <h3 class="card-header-title">Daftar Transaksi Pengadaan</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_penjualan" class="button is-success">Tambah Transaksi &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_trans_pengadaan" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan plat" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
-                        <th>Pelanggan</th>
+                        <th>Supplier</th>
                         <th>Cabang</th>
-                        <th>Total Harga Transaksi</th>
-                        <th>Diskon Penjualan</th>
-                        <th>Grand Total</th>
-                        <th>Status Transaksi</th>
-                        <th>Status Pembayaran</th>
-                        <th>Nomor Plat</th>
-                        <th>Tanggal</th>
+                        <th>Tanggal Pengadaan</th>
+                        <th>Total Harga Pengadaan</th>
                         <th>Modify</th>
                         
                     </thead>
                     <tbody>
-                      <tr v-for="(transaksi,index) in filteredList" :key ="transaksi.id">
-                        <td>{{ transaksi.pelanggan.nama_pelanggan }}</td>
-                        <td>{{ transaksi.cabang.nama_cabang }}</td>
-                        <td>{{ transaksi.total_harga_trans }}</td>
-                        <td>{{ transaksi.discount_penjualan }}</td>
-                        <td>{{ transaksi.grand_total }}</td>
-                        <td>{{ transaksi.status_transaksi }}</td>
-                        <td>{{ transaksi.status_pembayaran }}</td>
-                        <td>{{ transaksi.no_plat_kendaraan }}</td>
-                        <td>{{ transaksi.tanggal_penjualan }}</td>
+                      <tr v-for="(trans_pengadaan,index) in filteredList" :key ="trans_pengadaan.id">
+                        <td>{{ trans_pengadaan.supplier.nama_supplier }}</td>
+                        <td>{{ trans_pengadaan.cabang.nama_cabang }}</td>
+                        <td>{{ trans_pengadaan.tanggal_pengadaan }}</td>
+                        <td>{{ trans_pengadaan.total_harga_pengadaan }}</td>
                         <td>
                         <router-link 
-                          :to="{name:'editTransaksi' ,params:{id: transaksi.id}}" 
+                          :to="{name:'editTransaksiPengadaan' ,params:{id: trans_pengadaan.id}}" 
                           class="button is-primary">
                           <i class="fa fa-edit"></i>
                        </router-link>
                         <button 
                           class="button is-danger" 
-                          v-on:click="konfirmasiHapus(transaksi.id,index,transaksi.no_plat_kendaraan)">
+                          v-on:click="konfirmasiHapus(trans_pengadaan.id,index)">
                           <i class="fa fa-trash"></i>
                         </button>
-                        <router-link 
-                          :to="{name:'printSPK' ,params:{id: transaksi.id}}" 
-                          class="button is-info">
-                          <i class="fas fa-print"></i>
-                       </router-link>
                         </td>
                       </tr>
                     </tbody>
@@ -66,7 +51,7 @@
                    </div>     
                     <div class="card-footer">
                       <pagination class="card-footer-item"
-                        :data="transaksiPenjualanData" @pagination-change-page="getResults" :limit="4">
+                        :data="trans_pengadaanData" @pagination-change-page="getResults" :limit="4">
                         <span slot="prev-nav">&lt; Previous</span>
 	                      <span slot="next-nav">Next &gt;</span>
                       </pagination>
@@ -83,8 +68,8 @@
   export default {
     data: function() {
       return {
-        transaksiPenjualan: [],
-        transaksiPenjualanData: {},
+        transaksiPengadaan: [],
+        trans_pengadaanData: {},
         pencarian: '',
         loading: true
       }
@@ -95,8 +80,8 @@
     },
     computed: {
        filteredList: function(){
-         return this.transaksiPenjualan.filter((transaksi) => {
-           return transaksi.no_plat_kendaraan.toLowerCase().match(this.pencarian.toLowerCase());
+         return this.transaksiPengadaan.filter((trans_pengadaan) => {
+           return trans_pengadaan.supplier.nama_supplier.toLowerCase().match(this.pencarian.toLowerCase());
          });
        }
     },
@@ -106,10 +91,10 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/trans_penjualan?page=' + page)
+        axios.get('/api/trans_pengadaan?page=' + page)
         .then(function(resp){
-          app.transaksiPenjualan = resp.data.data;
-          app.transaksiPenjualanData = resp.data;
+          app.transaksiPengadaan = resp.data.data;
+          app.trans_pengadaanData = resp.data;
           app.loading = false;
         })
         .catch(function(resp){
@@ -119,21 +104,21 @@
         })
       },
       
-      deleteEntry(id,index,nomorPlat){
-          axios.delete('/api/trans_penjualan/' + id)
+      deleteEntry(id,index){
+          axios.delete('/api/trans_pengadaan/' + id)
           .then((resp) => {
             this.getResults();
-            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi " + nomorPlat);
+            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi Pengadaan ");
           })
           .catch((resp) =>{
-            alert("Gagal Menghapus Transaksi")
+            alert("Gagal Menghapus Transaksi Pengadaan")
             console.log(resp);
           })
       },
-      konfirmasiHapus(id,index,nomorPlat){
+      konfirmasiHapus(id,index){
       
         this.$swal({
-          title: "Yakin Ingin Menghapus Transaksi " + nomorPlat + "?",
+          title: "Yakin Ingin Menghapus Transaksi Pengadaan ?",
           text: "Data yang di hapus tidak akan bisa di kembalikan lagi",
           icon: "warning",
           buttons: true,
@@ -141,7 +126,7 @@
         })
         .then((willDelete) => {
           if (willDelete) {
-            this.deleteEntry(id,index,nomorPlat);
+            this.deleteEntry(id,index);
           }
         })  
       },

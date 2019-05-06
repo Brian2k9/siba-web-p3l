@@ -30,9 +30,9 @@
         -webkit-text-fill-color: antiquewhite;
     }
     td{
-        background-color: rgb(64, 63, 65);
-        -webkit-text-fill-color: antiquewhite;
-    }
+        background-color: rgb(255, 255, 255);
+        
+    } 
     .card{
         padding: 18px 30px 15px 30px;
     }
