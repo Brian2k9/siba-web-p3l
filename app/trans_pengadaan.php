@@ -12,7 +12,8 @@ class trans_pengadaan extends Model
     protected $fillable = ['id_supplier',
                             'id_cabang',
                             'tanggal_pengadaan',
-                            'total_harga_pengadaan'];
+                            'total_harga_pengadaan',
+                            'status_pengadaan'];
 
 
     public function supplier(){

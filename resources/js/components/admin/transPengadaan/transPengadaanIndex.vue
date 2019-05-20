@@ -4,34 +4,40 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi Pengadaan</h3>
+                    <h3 class="card-header-title">Daftar Transaksi Pengadaan Sparepart</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_pengadaan" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_trans_pengadaanv2" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_detail_pengadaan" class="button is-link">Tambah Detail Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/trans_pengadaan_konfirmasi" class="button is-dark">Konfirmasi Pengiriman &nbsp; <i class="fas fa-box"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari" v-bind:style="{width: '25%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari supplier" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
+                        <th class="id-row">ID</th>
                         <th>Supplier</th>
                         <th>Cabang</th>
                         <th>Tanggal Pengadaan</th>
                         <th>Total Harga Pengadaan</th>
+                        <th>Status Pengadaan</th>
                         <th>Modify</th>
                         
                     </thead>
                     <tbody>
                       <tr v-for="(trans_pengadaan,index) in filteredList" :key ="trans_pengadaan.id">
+                        <td>{{ trans_pengadaan.id }}</td>
                         <td>{{ trans_pengadaan.supplier.nama_supplier }}</td>
                         <td>{{ trans_pengadaan.cabang.nama_cabang }}</td>
                         <td>{{ trans_pengadaan.tanggal_pengadaan }}</td>
                         <td>{{ trans_pengadaan.total_harga_pengadaan }}</td>
+                        <td>{{ trans_pengadaan.status_pengadaan }}</td>
                         <td>
                         <router-link 
                           :to="{name:'editTransaksiPengadaan' ,params:{id: trans_pengadaan.id}}" 
@@ -43,6 +49,11 @@
                           v-on:click="konfirmasiHapus(trans_pengadaan.id,index)">
                           <i class="fa fa-trash"></i>
                         </button>
+                        <router-link 
+                          :to="{name:'showDetail' ,params:{id: trans_pengadaan.id}}" 
+                          class="button is-dark">
+                          <i class="fas fa-list"></i>
+                       </router-link>
                         </td>
                       </tr>
                     </tbody>

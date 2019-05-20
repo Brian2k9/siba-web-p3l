@@ -14,7 +14,7 @@ class suppliercontroller extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::paginate(10);
+        $suppliers = Supplier::paginate(100);
 
         return response()->json($suppliers, 200);
     }
@@ -60,7 +60,7 @@ class suppliercontroller extends Controller
         if (!$success) {
             return response()->json('Error Saving', 500);
         } else {
-            return response()->json('Success', 204);
+            return response()->json('Success', 200);
         }
     }
 

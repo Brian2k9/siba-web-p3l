@@ -14,35 +14,35 @@
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Nama Supplier</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Nama Supplier" v-model="supplier.nama_supplier" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" id="nama_supplier" required="" placeholder="Nama Supplier" v-model="supplier.nama_supplier" autofocus=""/>
                         <span v-if="errors.nama_supplier" class="help is-danger"> {{ errors.nama_supplier[0]}}</span>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Sales Supplier</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Sales Supplier" v-model="supplier.sales_supplier" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" id="sales_supplier" required="" placeholder="Sales Supplier" v-model="supplier.sales_supplier" autofocus=""/>
                         <span v-if="errors.sales_supplier" class="help is-danger"> {{ errors.sales_supplier[0]}}</span>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Nomor Telepon Supplier</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Nomor Telepon Supplier" v-model="supplier.no_telp_supplier" @input="onlyNumbers" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" id="no_telp_supplier" required="" placeholder="Nomor Telepon Supplier" v-model="supplier.no_telp_supplier" @input="onlyNumbers" autofocus=""/>
                         <span v-if="errors.no_telp_supplier" class="help is-danger"> {{ errors.no_telp_supplier[0]}}</span>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Alamat Supplier</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Alamat Supplier" v-model="supplier.alamat_supplier" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" id="alamat_supplier" required="" placeholder="Alamat Supplier" v-model="supplier.alamat_supplier" autofocus=""/>
                         <span v-if="errors.alamat_supplier" class="help is-danger"> {{ errors.alamat_supplier[0]}}</span>
                         </div>
                       </div>
                       <br>
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
-                          <button class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
+                          <button class="button is-success" type="submit" id="tambahbtn">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
                           <router-link to = "/supplier" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
                         </div>
                       </div>

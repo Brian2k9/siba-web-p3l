@@ -11,22 +11,6 @@
                 <div class="card-body">
                   
                     <form v-on:submit.prevent="saveForm()" class="form-horizontal" >
-                       <div class="form-group">
-                        <label for="name" class="col-md-2 control-label" >ID Transaksi Penjualan</label>
-                        <br>
-                        <div class="select is-primary">
-                        <div class="col-md-4">
-                          <select
-                          v-model="detail_trans_sparepart.id_trans_penjualan"
-                          class="form-control"
-                          required="" >
-                            <option value="">Pilih ID Transaksi Penjualan</option>
-                            <option v-for="transaksi in transaksiPenjualan" :value="transaksi.id">{{ transaksi.id }}</option>
-                          </select>
-                        <span v-if="errors.id_trans_penjualan" class="help is-danger"> {{ errors.id_trans_penjualan[0]}}</span>
-                        </div>
-                        </div>
-                      </div>
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Sparepart</label>
                         <br>
@@ -55,7 +39,7 @@
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
                           <button class="button is-success" type="submit">Ubah  &nbsp; <i class="fa fa-edit"></i></button>
-                          <router-link to = "/detail_trans_sparepart" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <button class="button is-warning" type="button" @click="kembali">Batal  &nbsp; <i class="fas fa-window-close"></i></button>
                         </div>
                       </div>
                       <br>
@@ -74,7 +58,7 @@
     data: function() {
       return {
         detail_trans_sparepart: {
-            id_trans_penjualan: '',
+            //id_trans_penjualan: '',
             id_sparepart: '',
             jumlah_barang: '',
         },
@@ -132,7 +116,8 @@
         axios.put('/api/trans_penjualan/detail_spare/update/' + this.transSparepartId ,newDetailTransSparepart)
         .then((resp) => {
           this.alert('Berhasil Mengubah Transaksi Sparepart ');
-          this.$router.replace('/detail_trans_sparepart');
+          //this.$router.replace('/detail_trans_sparepart');
+          this.$router.go(-1);
         })
         .catch((resp) =>{
           if(resp.response.status == 500) alert('Gagal Mengubah Transaksi Sparepart');
@@ -140,6 +125,9 @@
           console.log(resp);
         });
       },
+      kembali(){
+        this.$router.go(-1);
+      }
     }
   }
 

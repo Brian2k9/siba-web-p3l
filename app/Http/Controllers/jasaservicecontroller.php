@@ -47,6 +47,7 @@ class jasaservicecontroller extends Controller
 
         $request->validate([
             'nama_jasa' => 'required|unique:jasa_services,nama_jasa|max:255',
+            'harga_jasa' => 'required|numeric|not_in:0',
             
         ]);
 
@@ -117,6 +118,7 @@ class jasaservicecontroller extends Controller
 
         $request->validate([
             'nama_jasa' => 'required|unique:jasa_services,nama_jasa,'.$id.'|max:255',
+            'harga_jasa' => 'required|numeric|not_in:0',
             ]);
 
         $jasa = jasa_service::where('id', $id)->first();

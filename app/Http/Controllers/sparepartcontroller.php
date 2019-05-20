@@ -47,6 +47,10 @@ class sparepartcontroller extends Controller
 
         $request->validate([
             'kode_sparepart' => 'required|unique:spareparts,kode_sparepart|max:255',
+            'jumlah_stok_sparepart' => 'required|numeric|not_in:0|min:0',
+            'harga_beli_sparepart' => 'required|numeric|not_in:0|min:0',
+            'harga_jual_sparepart' => 'required|numeric|not_in:0|min:0',
+            'jumlah_minimal' => 'required|numeric|not_in:0|min:0',
             
         ]);
             
@@ -167,6 +171,10 @@ class sparepartcontroller extends Controller
 
         $request->validate([
             'kode_sparepart' => 'required|unique:spareparts,kode_sparepart,'.$id.'|max:255',
+            'jumlah_stok_sparepart' => 'required|numeric|not_in:0|min:0',
+            'harga_beli_sparepart' => 'required|numeric|not_in:0|min:0',
+            'harga_jual_sparepart' => 'required|numeric|not_in:0|min:0',
+            'jumlah_minimal' => 'required|numeric|not_in:0|min:0',
             ]);
 
         $sparepart = Sparepart::where('id', $id)->first();

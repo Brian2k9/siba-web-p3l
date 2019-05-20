@@ -86,8 +86,9 @@
                       <br>
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
-                          <button class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
-                          <router-link to = "/detail_trans_jasa" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <button v-on:click="isHidden = false" class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
+                          <router-link to = "/trans_penjualan" v-if="isHidden" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <router-link to = "/trans_penjualan" v-if="!isHidden" class="button is-info">Selesai  &nbsp; <i class="fas fa-check"></i></router-link>
                         </div>
                       </div>
                       <br>
@@ -117,7 +118,8 @@
         pegawais: [],
         kendaraans: [],
         errors: [],
-        message: ''
+        message: '',
+        isHidden: true
       }
     },
     mounted()  {
@@ -180,7 +182,8 @@
         axios.post('/api/trans_penjualan/detail_jasa/store',newDetailTransJasa)
         .then((resp) => {
           this.alert('Berhasil Menambah Transaksi Service ');
-          this.$router.replace('/detail_trans_jasa');
+          this.$router.replace('/tambah_trans_jasa');
+          this.detail_trans_jasa.jumlah_jasa = "";
         })
         .catch((resp) =>{
           if(resp.response.status == 500) alert('Gagal Menambah Transaksi Service');

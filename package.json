@@ -24,13 +24,18 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.1",
+        "apexcharts": "^3.6.10",
         "buefy": "^0.7.3",
         "bulma": "^0.7.4",
+        "chart.js": "^2.8.0",
+        "hooper": "^0.1.5",
         "laravel-vue-pagination": "^2.3.0",
+        "vue-apexcharts": "^1.3.5",
         "vue-axios": "^2.1.4",
         "vue-html-to-paper": "^1.0.3",
         "vue-router": "^3.0.2",
         "vue-simple-spinner": "^1.2.8",
-        "vue-swal": "^1.0.0"
+        "vue-swal": "^1.0.0",
+        "webpack": "^4.30.0"
     }
 }

@@ -4,17 +4,17 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi Sparepart</h3>
+                    <h3 class="card-header-title">Daftar Transaksi Penjualan Sparepart</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_sparepart" class="button is-success">Tambah Transaksi Sparepart &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                     <router-link to = "/trans_penjualan" class="button is-warning"> <i class="fas fa-arrow-left"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama sparepart" v-bind:style="{width: '25%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan kode sparepart" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -46,15 +46,10 @@
                         </td>
                       </tr>
                     </tbody>
-                    </table>     
-                    <vue-simple-spinner v-if="loading"></vue-simple-spinner>            
+                    </table>                 
                    </div>     
                     <div class="card-footer">
-                      <pagination class="card-footer-item"
-                        :data="detail_transsparepartData" @pagination-change-page="getResults" :limit="4">
-                        <span slot="prev-nav">&lt; Previous</span>
-	                      <span slot="next-nav">Next &gt;</span>
-                      </pagination>
+                      
                     </div>
                 
             </div>
@@ -69,14 +64,15 @@
     data: function() {
       return {
         detail_transsparepart: [],
-        detail_transsparepartData: {},
+        
         pencarian: '',
-        loading: true
+        //loading: true,
+        detailTransSparepartId: null,
       }
     },
     mounted()  {
      var app = this;
-    app.getResults();
+     app.getResults();
     },
     computed: {
        filteredList: function(){
@@ -86,39 +82,32 @@
        }
     },
     methods: {
-      getResults(page){
-        var app = this;
-        if(typeof page == 'undefined'){
-          page = 1;
-        }
-        axios.get('/api/trans_penjualan/detail_spare?page=' + page)
-        .then(function(resp){
-          app.detail_transsparepart = resp.data.data;
-          app.detail_transsparepartData = resp.data;
-          app.loading = false;
+      getResults(){
+        this.detailTransSparepartId = this.$route.params.id;
+        axios.get('/api/trans_penjualan/showDetailSparepart/'+this.detailTransSparepartId)
+          .then((resp) => {
+            this.detail_transsparepart =  resp.data;
         })
-        .catch(function(resp){
-          console.log(resp);
-          app.loading = false;
-         
-        })
+          .catch((resp) => {
+          alert("Gagal memuat detail transaksi sparepart");    
+        });
       },
       
       deleteEntry(id,index){
           axios.delete('/api/trans_penjualan/detail_spare/' + id)
           .then((resp) => {
             this.getResults();
-            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi ");
+            this.alert("Berhasil Menghapus","Berhasil Menghapus Detail Transaksi Sparepart ");
           })
           .catch((resp) =>{
-            alert("Gagal Menghapus Transaksi")
+            alert("Gagal Menghapus Detail Transaksi Sparepart")
             console.log(resp);
           })
       },
       konfirmasiHapus(id,index){
       
         this.$swal({
-          title: "Yakin Ingin Menghapus Transaksi ?",
+          title: "Yakin Ingin Menghapus Detail Transaksi Sparepart ?",
           text: "Data yang di hapus tidak akan bisa di kembalikan lagi",
           icon: "warning",
           buttons: true,

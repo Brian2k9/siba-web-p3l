@@ -16,7 +16,7 @@ class detailTransPenjualanSpareController extends Controller
      */
     public function index()
     {
-        $detailTransSpareparts = detail_trans_sparepart::with('trans_penjualan','sparepart')->paginate(10);
+        $detailTransSpareparts = detail_trans_sparepart::with('trans_penjualan','sparepart')->paginate(100);
         return response()->json($detailTransSpareparts, 200);
     }
 
@@ -45,6 +45,11 @@ class detailTransPenjualanSpareController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'jumlah_barang' => 'required|numeric|not_in:0',
+            
+        ]);
+
         $transpenjualan = trans_penjualan::where('id', $request->id_trans_penjualan)->first();
 
         if(is_null($transpenjualan)) {
@@ -114,6 +119,11 @@ class detailTransPenjualanSpareController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'jumlah_barang' => 'required|numeric|not_in:0',
+            
+        ]);
+
         $detailTransSpare = detail_trans_sparepart::find($id);
 
         if(is_null($detailTransSpare)) {
@@ -138,7 +148,7 @@ class detailTransPenjualanSpareController extends Controller
         $transpenjualan->total_harga_trans - $detailTransSpare->total_harga_spare;
 
         //input data baru
-         $detailTransSpare->id_trans_penjualan = $request->id_trans_penjualan;
+         //$detailTransSpare->id_trans_penjualan = $request->id_trans_penjualan;
          $detailTransSpare->id_sparepart = $request->id_sparepart;
          $detailTransSpare->jumlah_barang = $request->jumlah_barang;
 
@@ -257,8 +267,16 @@ class detailTransPenjualanSpareController extends Controller
          $detailTransSpare->total_harga_spare = 
          $request->jumlah_barang * $sparepart->harga_jual_sparepart;
 
+         //perhitungan total harga
          $transpenjualan->total_harga_trans = 
          $transpenjualan->total_harga_trans + $detailTransSpare->total_harga_spare;
+
+         //perhitungan discount
+         $discount = 
+         $transpenjualan->total_harga_trans * ($transpenjualan->discount_penjualan / 100);
+
+         $transpenjualan->grand_total = 
+         $transpenjualan->total_harga_trans - $discount;
          
          $success_trans = $transpenjualan->save();
          $success_detail = $detailTransSpare->save();
@@ -303,8 +321,16 @@ class detailTransPenjualanSpareController extends Controller
          $detailTransSpare->total_harga_spare = 
          $request->jumlah_barang * $sparepart->harga_jual_sparepart;
 
+         //perhitungan total harga
          $transpenjualan->total_harga_trans = 
          $transpenjualan->total_harga_trans + $detailTransSpare->total_harga_spare;
+
+         //perhitungan discount
+         $discount = 
+         $transpenjualan->total_harga_trans * ($transpenjualan->discount_penjualan / 100);
+
+         $transpenjualan->grand_total = 
+         $transpenjualan->total_harga_trans - $discount;
          
          $success_trans = $transpenjualan->save();
          $success_detail = $detailTransSpare->save();

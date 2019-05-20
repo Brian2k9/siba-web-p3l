@@ -7,14 +7,14 @@
                     <h3 class="card-header-title">List Supplier</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_supplier" class="button is-success">Tambah Supplier &nbsp; <i class="fas fa-user-plus fa-fw"></i></router-link>
+                      <router-link to="/tambah_supplier" class="button is-success" id="tambahsupplierlink">Tambah Supplier &nbsp; <i class="fas fa-user-plus fa-fw"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" id="carisupplier" placeholder="cari berdasarkan nama" v-bind:style="{width: '20%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
@@ -35,11 +35,11 @@
                         <td>
                         <router-link 
                           :to="{name:'editSupplier' ,params:{id: supplier.id}}" 
-                          class="button is-primary">
+                          class="button is-primary" id="editsupplierlink">
                           <i class="fa fa-edit"></i>
                        </router-link>
                         <button 
-                          class="button is-danger" 
+                          class="button is-danger" id="hapussupplierbtn" 
                           v-on:click="konfirmasiHapus(supplier.id,index,supplier.nama_supplier)">
                           <i class="fa fa-trash"></i>
                         </button>

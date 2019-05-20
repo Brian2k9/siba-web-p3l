@@ -11,7 +11,8 @@ class detail_trans_pengadaan extends Model
     public $timestamps = true;
     protected $fillable = ['id_trans_pengadaan',
                             'id_sparepart',
-                            'jumlah_pengadaan'];
+                            'jumlah_pengadaan',
+                            'subtotal_pengadaan'];
 
     public function trans_pengadaan(){
         return $this->belongsTo(trans_pengadaan::class, 'id_trans_pengadaan');

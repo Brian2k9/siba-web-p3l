@@ -42,6 +42,8 @@ import transPenjualanIndex from '../components/admin/transaksiPenjualan/transPen
 import CreateTransaksiPenjualan from '../components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue'
 import EditTransaksiPenjualan from '../components/admin/transaksiPenjualan/EditTransPenjualan.vue'
 import PrintSPK from '../components/admin/transaksiPenjualan/PrintSPK.vue'
+import pembayaranIndex from '../components/admin/transaksiPenjualan/pembayaranIndex.vue'
+import Pembayaran from '../components/admin/transaksiPenjualan/pembayaran.vue'
 
 import detailTransJasaIndex from '../components/admin/detailTransJasa/detailTransJasaIndex.vue'
 import CreateDetailTransJasa from '../components/admin/detailTransJasa/CreateDetailTransJasa.vue'
@@ -52,11 +54,24 @@ import CreateDetailTransSparepart from '../components/admin/detailTransSparepart
 import EditDetailTransSparepart from '../components/admin/detailTransSparepart/EditDetailTransSparepart.vue'
 
 import transPengadaanIndex from '../components/admin/transPengadaan/transPengadaanIndex.vue'
+import detailTransPengadaanIndex from '../components/admin/transPengadaan/detailTransPengadaanIndex.vue'
 import CreateTransPengadaan from '../components/admin/transPengadaan/CreateTransPengadaan.vue'
+import CreateTransPengadaanV2 from '../components/admin/transPengadaan/CreateTransPengadaanV2.vue'
+import CreateDetailPengadaan from '../components/admin/transPengadaan/CreateDetailPengadaan.vue'
+import EditTransPengadaan from '../components/admin/transPengadaan/EditTransPengadaan.vue'
+import EditDetailPengadaan from '../components/admin/transPengadaan/EditDetailPengadaan.vue'
+import KonfirmasiPengirimanIndex from '../components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue'
+import KonfirmasiPengiriman from '../components/admin/transPengadaan/KonfirmasiPengiriman.vue'
 
+import PendapatanBulanan from '../components/admin/laporan/PendapatanBulanan.vue'
+import PengeluaranBulanan from '../components/admin/laporan/PengeluaranBulanan.vue'
+import PendapatanTahunan from '../components/admin/laporan/PendapatanTahunan.vue'
+import JumlahJasaService from '../components/admin/laporan/JumlahJasaService.vue'
+import SisaStokBulanan from '../components/admin/laporan/SisaStokBulanan.vue'
+import SparepartTerlaris from '../components/admin/laporan/SparepartTerlaris.vue'
 
-
-
+import RootPelanggan from '../components/start/rootPelanggan.vue'
+import HomePelanggan from '../components/start/welcomePelanggan.vue'
 
 const routes = [
     {
@@ -78,7 +93,7 @@ const routes = [
             },
             {
                 name: 'editJasaService',
-                path:'/edit_jasa',
+                path:'/edit_jasa/:id',
                 component: EditJasaService
             },
             
@@ -92,7 +107,7 @@ const routes = [
             },
             {
                 name: 'editPegawai',
-                path:'/edit_pegawai',
+                path:'/edit_pegawai/:id',
                 component: EditPegawai
             },
 
@@ -106,7 +121,7 @@ const routes = [
             },
             {
                 name: 'editSparepart',
-                path:'/edit_sparepart',
+                path:'/edit_sparepart/:id',
                 component: EditSparepart
             },
 
@@ -120,7 +135,7 @@ const routes = [
             },
             {
                 name: 'editSupplier',
-                path:'/edit_supplier',
+                path:'/edit_supplier/:id',
                 component: EditSupplier
             },
 
@@ -134,7 +149,7 @@ const routes = [
             },
             {
                 name: 'editRole',
-                path:'/edit_role',
+                path:'/edit_role/:id',
                 component: EditRole
             },
 
@@ -148,7 +163,7 @@ const routes = [
             },
             {
                 name: 'editCabang',
-                path:'/edit_cabang',
+                path:'/edit_cabang/:id',
                 component: EditCabang
             },
 
@@ -162,7 +177,7 @@ const routes = [
             },
             {
                 name: 'editPelanggan',
-                path:'/edit_pelanggan',
+                path:'/edit_pelanggan/:id',
                 component: EditPelanggan
             },
 
@@ -176,7 +191,7 @@ const routes = [
             },
             {
                 name: 'editKendaraan',
-                path:'/edit_kendaraan',
+                path:'/edit_kendaraan/:id',
                 component: EditKendaraan
             },
 
@@ -189,7 +204,7 @@ const routes = [
                 component: CreateTransaksiPenjualan
             },
             {   name: 'editTransaksi',
-                path:'/edit_trans_penjualan',
+                path:'/edit_trans_penjualan/:id',
                 component: EditTransaksiPenjualan
             },
             {
@@ -197,9 +212,19 @@ const routes = [
                 path:'/print_spk',
                 component: PrintSPK
             },
+            {
+                path:'/trans_penjualan_pembayaran',
+                component: pembayaranIndex
+            },
+            {
+                name: 'bayarTransaksi',
+                path:'/trans_penjualan_bayar/:id',
+                component: Pembayaran
+            },
 
             {
-                path:'/detail_trans_jasa',
+                name: 'showDetailJasa',
+                path:'/detail_trans_jasa/:id',
                 component: detailTransJasaIndex
             },
             {
@@ -208,12 +233,13 @@ const routes = [
             },
             {
                 name: 'editDetailTransJasa',
-                path:'/edit_trans_jasa',
+                path:'/edit_trans_jasa/:id',
                 component: EditDetailTransJasa
             },
 
             {
-                path:'/detail_trans_sparepart',
+                name: 'showDetailSparepart',
+                path:'/detail_trans_sparepart/:id',
                 component: detailTransSparepartIndex
             },
             {
@@ -222,7 +248,7 @@ const routes = [
             },
             {
                 name: 'editTransaksiSparepart',
-                path:'/edit_trans_sparepart',
+                path:'/edit_trans_sparepart/:id',
                 component: EditDetailTransSparepart
             },
 
@@ -231,15 +257,81 @@ const routes = [
                 component: transPengadaanIndex
             },
             {
+                name:'showDetail',
+                path:'/detail_trans_pengadaan/:id',
+                component: detailTransPengadaanIndex
+            },
+            {
                 path:'/tambah_trans_pengadaan',
                 component: CreateTransPengadaan
             },
+            {
+                path:'/tambah_trans_pengadaanv2',
+                component: CreateTransPengadaanV2
+            },
+            {
+                name: 'editTransaksiPengadaan',
+                path:'/edit_trans_pengadaan/:id',
+                component: EditTransPengadaan
+            },
+            {
+                path:'/trans_pengadaan_konfirmasi',
+                component: KonfirmasiPengirimanIndex
+            },
+            {
+                name: 'konfirmasiPengiriman',
+                path:'/trans_pengadaan_konfirm/:id',
+                component: KonfirmasiPengiriman
+            },
+            {
+                path:'/tambah_detail_pengadaan',
+                component: CreateDetailPengadaan
+            },
+            {
+                name: 'editDetailPengadaan',
+                path:'/edit_detail_pengadaan/:id',
+                component: EditDetailPengadaan
+            },
             
-            
-           
-            
+            {
+                path:'/laporan/pendapatan_bulanan',
+                component: PendapatanBulanan
+            },
+            {
+                path:'/laporan/pengeluaran_bulanan',
+                component: PengeluaranBulanan
+            },
+            {
+                path:'/laporan/pendapatan_tahunan',
+                component: PendapatanTahunan
+            },
+            {
+                path:'/laporan/jasa_service',
+                component: JumlahJasaService
+            },
+            {
+                path:'/laporan/sisa_stok_bulanan',
+                component: SisaStokBulanan
+            },
+            {
+                path:'/laporan/sparepart_terlaris',
+                component: SparepartTerlaris
+            },
+        ]
+    },
+    
+    {
+        path: '/customer',
+        component: RootPelanggan,
+        children : [
+            {
+                path: '/customer',
+                component: HomePelanggan
+            }
         ]
     }
+    
+
     
         
     

@@ -84,7 +84,7 @@
             id_pelanggan: '',
             id_cabang: '',
             no_plat_kendaraan: '',
-            tanggal_penjualan: '2019-02-04',
+            tanggal_penjualan: '',
         },
         pelanggans: [],
         cabangs: [],

@@ -137,12 +137,7 @@
         cabangs: [],
         spareparts: [],
         transPengadaan: [],
-        rows: [
-          {
-            id_sparepart: '',
-            jumlah_pengadaan: '',
-          }
-        ],
+        rows: [],
         errors: [],
         message: ''
       }
@@ -204,10 +199,7 @@
       },
       addRow: function() {
             var elem = document.createElement('tr');
-            this.rows.push({
-            id_sparepart: '',
-            jumlah_pengadaan: '',
-            });
+            this.rows.push(this.transaksiPengadaan);
       },
       removeElement: function(index) {
         this.rows.splice(index, 1);
@@ -215,8 +207,6 @@
       saveForm(){
         var newTransPengadaan = this.transaksiPengadaan;
         axios.post('/api/trans_pengadaan/store',newTransPengadaan)
-        // var newDetailTransPengadaan = this.detail_trans_pengadaan;
-        // axios.post('/api/detail_trans_pengadaan/store',newDetailTransPengadaan)
         .then((resp) => {
           this.alert('Berhasil Menambah Transaksi Pengadaan ');
           this.$router.replace('/trans_pengadaan');

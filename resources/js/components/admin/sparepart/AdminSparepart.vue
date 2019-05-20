@@ -91,7 +91,7 @@
     computed: {
        filteredList: function(){
          return this.spareparts.filter((sparepart) => {
-           return sparepart.nama_sparepart.toLowerCase().match(this.pencarian.toLowerCase());
+           return sparepart.kode_sparepart.toLowerCase().match(this.pencarian.toLowerCase());
          });
        }
     },

@@ -54,8 +54,9 @@
                       <br>
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
-                          <button class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
-                          <router-link to = "/detail_trans_sparepart" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <button v-on:click="isHidden = false" class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
+                          <router-link to = "/trans_penjualan" v-if="isHidden" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <router-link to = "/trans_penjualan" v-if="!isHidden" class="button is-info">Selesai  &nbsp; <i class="fas fa-check"></i></router-link>
                         </div>
                       </div>
                       <br>
@@ -81,7 +82,8 @@
         transaksiPenjualan: [],
         spareparts: [],
         errors: [],
-        message: ''
+        message: '',
+        isHidden: true
       }
     },
     mounted()  {
@@ -122,7 +124,8 @@
         axios.post('/api/trans_penjualan/detail_spare/store',newDetailTransSparepart)
         .then((resp) => {
           this.alert('Berhasil Menambah Transaksi Sparepart ');
-          this.$router.replace('/detail_trans_sparepart');
+          this.$router.replace('/tambah_trans_sparepart');
+          this.detail_trans_sparepart.jumlah_barang = "";
         })
         .catch((resp) =>{
           if(resp.response.status == 500) alert('Gagal Menambah Transaksi Sparepart');
