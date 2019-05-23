@@ -14,7 +14,7 @@ class sparepartcontroller extends Controller
      */
     public function index()
     {
-        $spareparts = Sparepart::paginate(10);
+        $spareparts = Sparepart::paginate(100);
 
         return response()->json($spareparts, 200);
     }

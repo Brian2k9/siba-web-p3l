@@ -72,6 +72,8 @@ import SparepartTerlaris from '../components/admin/laporan/SparepartTerlaris.vue
 
 import RootPelanggan from '../components/start/rootPelanggan.vue'
 import HomePelanggan from '../components/start/welcomePelanggan.vue'
+import DaftarSparepart from '../components/start/daftarSparepart.vue'
+import RiwayatPelanggan from '../components/start/riwayatPelanggan.vue'
 
 const routes = [
     {
@@ -327,6 +329,14 @@ const routes = [
             {
                 path: '/customer',
                 component: HomePelanggan
+            },
+            {
+                path: '/customer/daftar_sparepart',
+                component: DaftarSparepart
+            },
+            {
+                path: '/customer/riwayat_pelanggan',
+                component: RiwayatPelanggan
             }
         ]
     }

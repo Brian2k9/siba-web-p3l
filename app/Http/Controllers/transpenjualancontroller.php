@@ -272,6 +272,47 @@ class transpenjualancontroller extends Controller
         return response()->json($transpenjualans, 200);
     }
 
+    public function getHistoryById($id) {
+        $transpenjualan = trans_penjualan::select('trans_penjualan.*'
+        , 'pelanggans.nama_pelanggan', 'pelanggans.alamat_pelanggan', 'pelanggans.no_telp_pelanggan'
+        , 'cabangs.nama_cabang', 'cabangs.alamat_cabang', 'cabangs.no_telp_cabang')
+        ->join('pelanggans', 'pelanggans.id', 'trans_penjualan.id_pelanggan')
+        ->join('cabangs', 'cabangs.id', 'trans_penjualan.id_cabang')
+        ->latest('trans_penjualan.created_at')
+        ->where('trans_penjualan.status_penjualan', 'sudah')
+        ->where('trans_penjualan.status_pembayaran', 'sudah')
+        ->where('pelanggans.id', $id)
+        ->get();
+
+        if(is_null($transpenjualan)) {
+            return response()->json('Transaksi Penjualan Not Found', 404);
+        }
+        
+        else {
+            return response()->json($transpenjualan, 200);
+        }
+    }
+
+    public function getStatusById($id) {
+        $transpenjualan = trans_penjualan::select('trans_penjualan.*'
+        , 'pelanggans.nama_pelanggan', 'pelanggans.alamat_pelanggan', 'pelanggans.no_telp_pelanggan'
+        , 'cabangs.nama_cabang', 'cabangs.alamat_cabang', 'cabangs.no_telp_cabang')
+        ->join('pelanggans', 'pelanggans.id', 'trans_penjualan.id_pelanggan')
+        ->join('cabangs', 'cabangs.id', 'trans_penjualan.id_cabang')
+        ->latest('trans_penjualan.created_at')
+        ->where('trans_penjualan.status_pembayaran', 'belum')
+        ->where('pelanggans.id', $id)
+        ->get();
+
+        if(is_null($transpenjualan)) {
+            return response()->json('Transaksi Penjualan Not Found', 404);
+        }
+        
+        else {
+            return response()->json($transpenjualan, 200);
+        }
+    }
+
     public function storeMobile(Request $request)
     {
         $v = Validator::make($request->all(),[

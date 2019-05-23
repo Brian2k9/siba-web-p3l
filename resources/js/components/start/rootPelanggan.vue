@@ -29,6 +29,10 @@
         <router-link to= "/customer/daftar_sparepart" class="button is-dark"><i class="fas fa-cogs"></i> &nbsp; Daftar Sparepart</router-link>
       </a>
 
+       <a class="navbar-item">
+        <router-link to= "/customer/riwayat_pelanggan" class="button is-dark"><i class="fas fa-clipboard-list"></i> &nbsp; Riwayat Pelanggan</router-link>
+      </a>
+
       <a class="navbar-item">
         <router-link to= "/customer/contactus" class="button is-dark"><i class="fas fa-phone-square"></i> &nbsp; Contact Us</router-link>
       </a>

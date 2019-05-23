@@ -134,6 +134,8 @@ Route::post('/mobile/trans_penjualan/pembayaran/{id}', 'transpenjualancontroller
 Route::post('/mobile/trans_penjualan/store','transpenjualancontroller@storeMobile');
 Route::put('/mobile/trans_penjualan/update/{id}','transpenjualancontroller@updateMobile');
 Route::delete('/mobile/trans_penjualan/delete/{id}','transpenjualancontroller@destroyMobile');
+Route::get('/mobile/trans_penjualan/getHistoryById/{id}', 'transpenjualancontroller@getHistoryById');
+Route::get('/mobile/trans_penjualan/getStatusById/{id}', 'transpenjualancontroller@getStatusById');
 
 //////////////////////////////////////////////////////////////////////////////////DETAIL TRANS PENJUALAN
 Route::get('/trans_penjualan/detail_jasa', 'detailTransPenjualanJasaController@index');
@@ -193,7 +195,7 @@ Route::delete('/mobile/trans_pengadaan/detail/{id}','detailpengadaancontroller@d
 /////////////////////////////////////////////////////////////////////////////////////////////REPORT
 Route::get('/report/pendapatan_bulanan/', 'reportController@pendapatan_bul');
 Route::get('/report/pengeluaran_bulanan', 'reportController@pengeluaran_bul');
-Route::get('/report/spare_terlaris/{month}', 'reportController@lap_spare_terlaris');
-Route::get('/report/jumlah_jasa_permotor/{motor}', 'reportController@jumlah_jasa_perMotor');
+Route::get('/report/spare_terlaris/', 'reportController@spare_terlaris');
+Route::get('/report/jumlah_jasa_permotor/', 'reportController@jumlah_jasa_perMotor');
 Route::get('/report/sisa_stok_bulanan', 'reportController@sisa_stok_bulanan');
 Route::get('/report/tahunan_percabang', 'reportController@tahunan_perCabang');
