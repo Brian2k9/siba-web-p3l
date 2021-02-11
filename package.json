@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.1",
-        "apexcharts": "^3.6.10",
+        "apexcharts": "^3.24.0",
         "buefy": "^0.7.3",
         "bulma": "^0.7.4",
         "chart.js": "^2.8.0",
